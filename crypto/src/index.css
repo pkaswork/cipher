@@ -275,8 +275,7 @@ body {
 .exercise-form {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	gap: 20px;
+	row-gap: 20px;
 }
 
 .exercise-form-prewin {
@@ -285,6 +284,7 @@ body {
 }
 
 .exercise-input {
+	margin-right: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
