@@ -1,17 +1,16 @@
-import Header from './header'
+import Headerfooter from './Headerfooter'
 import Exercise from './exercise'
-import Footer from './footer'
 
 export default function Exercisepage() {
 	return <>
 	<div className="wrapper">
 		<div className="content">
-			<Header />
+			<Headerfooter />
 			<main className="main">
 				<Exercise />
 			</main>
 		</div>
-		<Footer />
+		<Headerfooter />
 	</div>
 	</>
 }
