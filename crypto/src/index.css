@@ -226,6 +226,15 @@ body {
   margin-top: 20px;
 }
 
+.exercise-box__body-text:nth-child(2) {
+	padding: 30px 6em;
+}
+
+.exercise-box__body-text:nth-child(2) .text {
+	text-align: center;
+   word-wrap: break-word;
+}
+
 .exercise-page {
 	animation: showCubic .9s ease forwards;
 }
@@ -307,6 +316,11 @@ body {
 .word-input {
 	padding: 10px;
 	border-radius: 4px;
+}
+
+.win-text {
+	width: 100%;
+	text-align: center;
 }
 
 .button-container {
