@@ -1,146 +1,150 @@
+import { useState } from 'react'
+
+let arrayLetters = [
+	{letter: 'a', rusLetter: 'А'},
+	{letter: 'b', rusLetter: 'Б'},
+	{letter: 'v', rusLetter: 'В'},
+	{letter: 'g', rusLetter: 'Г'},
+	{letter: 'd', rusLetter: 'Д'},
+	{letter: 'e', rusLetter: 'Е'},
+	{letter: 'zh', rusLetter: 'Ж'},
+	{letter: 'z', rusLetter: 'З'},
+	{letter: 'i', rusLetter: 'И'},
+	{letter: 'iq', rusLetter: 'Й'},
+	{letter: 'k', rusLetter: 'К'},
+	{letter: 'l', rusLetter: 'Л'},
+	{letter: 'm', rusLetter: 'М'},
+	{letter: 'n', rusLetter: 'Н'},
+	{letter: 'o', rusLetter: 'О'},
+	{letter: 'p', rusLetter: 'П'},
+	{letter: 'r', rusLetter: 'Р'},
+	{letter: 's', rusLetter: 'С'},
+	{letter: 't', rusLetter: 'Т'},
+	{letter: 'u', rusLetter: 'У'},
+	{letter: 'f', rusLetter: 'Ф'},
+	{letter: 'h', rusLetter: 'Х'},
+	{letter: 'c', rusLetter: 'Ц'},
+	{letter: 'ch', rusLetter: 'Ч'},
+	{letter: 'sh', rusLetter: 'Ш'},
+	{letter: 'shch', rusLetter: 'Щ'},
+	{letter: 'mb', rusLetter: 'Ь'},
+	{letter: 'bl', rusLetter: 'Ы'},
+	{letter: 'tb', rusLetter: 'Ъ'},
+	{letter: 'ae', rusLetter: 'Э'},
+	{letter: 'yu', rusLetter: 'Ю'},
+	{letter: 'ya', rusLetter: 'Я'},
+	{letter: 'space', rusLetter: '_'}
+]
+
+function ExerciseInput({ letter, rusLetter }) {
+	const [letterState, setLetterState] = useState('')
+
+	return <>
+		<div className="exercise-input">
+			<label htmlFor={ letter }>{rusLetter}</label>
+			<input type="text" id={ letter } name={ letter } value={ letterState } onChange={event => setLetterState(event.target.value)} className="word-input" placeholder="?" />
+		</div>
+	</>
+}
+
 export default function CipherCaesar({ variant }) {
+	const [tesarius, setTesarius] = useState('')
+	const [fragmentOfText, setFragmentOfText] = useState('')
+	const arrTesarius = [
+		'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ',
+		'ВОТ_МУДРЕЦ_ПЕРЕД_ДАДОНОМ_СТАЛ_И_ВЫНУЛ_ИЗ_МЕШКА_ЗОЛОТОГО_ПЕТУШКА_ПОСАДИ_ТЫ_ЭТУ_ПТИЦУ_МОЛВИЛ_ОН_ЦАРЮ_НА_СПИЦУ_ПЕТУШОК_МОЙ_ЗОЛОТОЙ_БУДЕТ_ВЕРНЫЙ_СТОРОЖ_ТВОЙ_КОЛЬ_КРУГОМ_ВСЕ_БУДЕТ_МИРНО_ТАК_СИДЕТЬ_ОН_БУДЕТ_СМИРНО_НО_ЛИШЬ_ЧУТЬ_СО_СТОРОНЫ_ОЖИДАТЬ_ТЕБЕ_ВОЙНЫ_ИЛЬ_НАБЕГА_СИЛЫ_БРАННОЙ',
+		'ПЕТУШОК_С_ВЫСОКОЙ_СПИЦЫ_СТАЛ_СТЕРЕЧЬ_ЕГО_ГРАНИЦЫ_ЧУТЬ_ОПАСНОСТЬ_ГДЕ_ВИДНА_ВЕРНЫЙ_СТОРОЖ_КАК_СО_СНА_ШЕВЕЛЬНЕТСЯ_ВСТРЕПЕНЕТСЯ_К_ТОЙ_СТОРОНКЕ_ОБЕРНЕТСЯ_И_КРИЧИТ_КИРИ_КУ_КУ_ЦАРСТВУЙ_ЛЕЖА_НА_БОКУ_И_СОСЕДИ_ПРИСМИРЕЛИ_ВОЕВАТЬ_УЖЕ_НЕ_СМЕЛИ_ТАКОВОЙ_ИМ_ЦАРЬ_ДАДОН_ДАЛ_ОТПОР_СО_ВСЕХ_СТОРОН'
+	]
+	const arrFragmentsOfText = [
+		'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ',
+		'ТЫ_ЭТУ_ПТИЦУ_МОЛВИЛ_ОН_ЦАРЮ_НА_СПИЦУ_ПЕТУШОК_МОЙ_ЗОЛОТОЙ_БУДЕТ_ВЕРНЫЙ_СТОРОЖ_ТВОЙ',
+		'ОПАСНОСТЬ_ГДЕ_ВИДНА_ВЕРНЫЙ_СТОРОЖ_КАК_СО_СНА_ШЕВЕЛЬНЕТСЯ_ВСТРЕПЕНЕТСЯ'
+	]
+	const arrOfTitles = [
+		'Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина "Сказка о Золотом Петушке".',
+		'Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк второго абзаца произведения А. С. Пушкина "Сказка о Золотом Петушке".',
+		'Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк третьего абзаца произведения А. С. Пушкина "Сказка о Золотом Петушке".'
+	]
+	
+	let cipherData = {
+		'shift' : variant,
+		'code' : {
+			'А' : '',    'Б' : '',    'В' : '',    'Г' : '',    'Д' : '',
+			'Е' : '',    'Ж' : '',   'З' : '',    'И' : '',	'Й' : '',
+			'К' : '',    'Л' : '',    'М' : '',    'Н' : '',    'О' : '',    
+			'П' : '',    'Р' : '',    'С' : '',    'Т' : '',    'У' : '',
+			'Ф' : '',    'Х' : '',    'Ц' : '',    'Ч' : '',   'Ш' : '',
+			'Щ' : '',  	'Ь' : '',     'Ы' : '',    'Э' : '', 	'Ю' : '',
+			'Я' : '',   '_' : '',
+		},
+		'alph' : ['А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_','А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_'],
+		'win' : false,
+		'winText' : 'Запишите код шифрованного текста',
+		'tried' : false
+	}
+
+	function setGame() {
+		cipherData['code']['А'] = cipherData['alph'][cipherData['shift']]
+		cipherData['code']['Б'] = cipherData['alph'][cipherData['shift'] + 1]
+		cipherData['code']['В'] = cipherData['alph'][cipherData['shift'] + 2]
+		cipherData['code']['Г'] = cipherData['alph'][cipherData['shift'] + 3]
+		cipherData['code']['Д'] = cipherData['alph'][cipherData['shift'] + 4]
+		cipherData['code']['Е'] = cipherData['alph'][cipherData['shift'] + 5]
+		cipherData['code']['Ж'] = cipherData['alph'][cipherData['shift'] + 6]
+		cipherData['code']['З'] = cipherData['alph'][cipherData['shift'] + 7]
+		cipherData['code']['И'] = cipherData['alph'][cipherData['shift'] + 8]
+		cipherData['code']['Й'] = cipherData['alph'][cipherData['shift'] + 9]
+		cipherData['code']['К'] = cipherData['alph'][cipherData['shift'] + 10]
+		cipherData['code']['Л'] = cipherData['alph'][cipherData['shift'] + 11]
+		cipherData['code']['М'] = cipherData['alph'][cipherData['shift'] + 12]
+		cipherData['code']['Н'] = cipherData['alph'][cipherData['shift'] + 13]
+		cipherData['code']['О'] = cipherData['alph'][cipherData['shift'] + 14]
+		cipherData['code']['П'] = cipherData['alph'][cipherData['shift'] + 15]
+		cipherData['code']['Р'] = cipherData['alph'][cipherData['shift'] + 16]
+		cipherData['code']['С'] = cipherData['alph'][cipherData['shift'] + 17]
+		cipherData['code']['Т'] = cipherData['alph'][cipherData['shift'] + 18]
+		cipherData['code']['У'] = cipherData['alph'][cipherData['shift'] + 19]
+		cipherData['code']['Ф'] = cipherData['alph'][cipherData['shift'] + 20]
+		cipherData['code']['Х'] = cipherData['alph'][cipherData['shift'] + 21]
+		cipherData['code']['Ц'] = cipherData['alph'][cipherData['shift'] + 22]
+		cipherData['code']['Ч'] = cipherData['alph'][cipherData['shift'] + 23]
+		cipherData['code']['Ш'] = cipherData['alph'][cipherData['shift'] + 24]
+		cipherData['code']['Щ'] = cipherData['alph'][cipherData['shift'] + 25]
+		cipherData['code']['Ь'] = cipherData['alph'][cipherData['shift'] + 26]
+		cipherData['code']['Ы'] = cipherData['alph'][cipherData['shift'] + 27]
+		cipherData['code']['Ъ'] = cipherData['alph'][cipherData['shift'] + 28]
+		cipherData['code']['Э'] = cipherData['alph'][cipherData['shift'] + 29]
+		cipherData['code']['Ю'] = cipherData['alph'][cipherData['shift'] + 30]
+		cipherData['code']['Я'] = cipherData['alph'][cipherData['shift'] + 31]
+		cipherData['code']['_'] = cipherData['alph'][cipherData['shift'] + 32]
+	}
+
+	setGame()
+
+	function replaceLetters(text) {
+		let replaced = text.toUpperCase()
+		let str = ''
+		
+		for (let i = 0; i < replaced.length; i++) {
+			str += cipherData['code'][replaced[i]]
+		}
+	
+		return str
+	}
+
 	return <>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
-				<p className="text">Прочтите нижеприведённый текст, а затем найдите код его алфавита.</p>
+				<p className="text">{arrOfTitles[0]}</p>
 			</div>
 			<div className="exercise-box__body-text">
-				<h2 className="text secret"></h2>
+				<h2 className="text secret">{replaceLetters(arrFragmentsOfText[0])}</h2>
 			</div>
 			<form action="#" method="POST" className="exercise-form">
-				<h3 className="subtitle win-text"></h3>
-				<div className="exercise-input">
-					<label htmlFor="a">А</label>
-					<input type="text" id="a" name="a" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="b">Б</label>
-					<input type="text" id="b" name="b" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="v">В</label>
-					<input type="text" id="v" name="v" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="g">Г</label>
-					<input type="text" id="g" name="g" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="d">Д</label>
-					<input type="text" id="d" name="d" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="e">Е</label>
-					<input type="text" id="e" name="e" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="zh">Ж</label>
-					<input type="text" id="zh" name="zh" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="z">З</label>
-					<input type="text" id="z" name="z" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="i">И</label>
-					<input type="text" id="i" name="i" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="iq">Й</label>
-					<input type="text" id="iq" name="iq" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="k">К</label>
-					<input type="text" id="k" name="k" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="l">Л</label>
-					<input type="text" id="l" name="l" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="m">М</label>
-					<input type="text" id="m" name="m" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="n">Н</label>
-					<input type="text" id="n" name="n" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="o">О</label>
-					<input type="text" id="o" name="o" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="p">П</label>
-					<input id="p" name="p" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="r">Р</label>
-					<input type="text" id="r" name="r" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="s">С</label>
-					<input type="text" id="s" name="s" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="t">Т</label>
-					<input type="text" id="t" name="t" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="u">У</label>
-					<input type="text" id="u" name="u" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="f">Ф</label>
-					<input type="text" id="f" name="f" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="h">Х</label>
-					<input type="text" id="h" name="h" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="c">Ц</label>
-					<input type="text" id="c" name="c" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="ch">Ч</label>
-					<input type="text" id="ch" name="ch" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="sh">Ш</label>
-					<input type="text" id="sh" name="sh" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="shch">Щ</label>
-					<input type="text" id="shch" name="shch" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="mb">Ь</label>
-					<input type="text" id="mb" name="mb" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="bl">Ы</label>
-					<input id="bl" name="bl" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="tb">Ъ</label>
-					<input type="text" id="tb" name="tb" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="ae">Э</label>
-					<input type="text" id="ae" name="ae" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="yu">Ю</label>
-					<input type="text" id="yu" name="yu" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="ya">Я</label>
-					<input type="text" id="ya" name="ya" className="word-input" placeholder="?" />
-				</div>
-				<div className="exercise-input">
-					<label htmlFor="space">_</label>
-					<input type="text" id="under" name="space" className="word-input" placeholder="?" />
-				</div>
+				<h2 className="subtitle win-text">{cipherData['winText']}</h2>
+				{arrayLetters.map(item => {
+					return <ExerciseInput letter={ item.letter } rusLetter={ item.rusLetter } key={ item.letter } />
+				})}
 				<div className="button-container">
 					<input type="submit" className="btn" value="Ввести" />
 					<button className="btn tezaurus-btn">Тезариус</button>
