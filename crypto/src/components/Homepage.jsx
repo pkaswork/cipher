@@ -29,8 +29,8 @@ export default function Homepage() {
 									<Link to="/exercise" state={{ from: [variant, 'permutationCipher']}} className="text link-task">Перейти к решению</Link>
 								</article>
 								<article className="exercise-flex__elem">
-									<h2 className="title">Шифр Трисемуса</h2>
-									<Link to="/exercise" state={{ from: [variant, 'trisemusCipher']}} className="text link-task">Перейти к решению</Link>
+									<h2 className="title">Шифр Трисемиуса</h2>
+									<Link to="/exercise" state={{ from: [variant, 'trisemiusCipher']}} className="text link-task">Перейти к решению</Link>
 								</article>
 								<article className="exercise-flex__elem">
 									<h2 className="title">Шифр Диффи-Хеммана</h2>

@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 import CipherCaesar from './CipherCaesar'
 import GammingCode from './GammingCode'
 import PermutationCipher from './PermutationCipher'
-import TrisemusCipher from './TrisemusCipher'
+import TrisemiusCipher from './TrisemiusCipher'
 import CipherDiffieHellman from './CipherDiffieHellman'
 import Rsa from './rsa'
 
@@ -36,8 +36,8 @@ export default function Exercise() {
 			return <GammingCode variant={ variant } />
 		} else if (mode === 'permutationCipher') {
 			return <PermutationCipher variant={ variant } />
-		} else if (mode === 'trisemusCipher') {
-			return <TrisemusCipher variant={ variant } />
+		} else if (mode === 'trisemiusCipher') {
+			return <TrisemiusCipher variant={ variant } />
 		} else if (mode === 'cipherDiffieHellman') {
 			return <CipherDiffieHellman variant={ variant } />
 		} else if (mode === 'rsa') {
