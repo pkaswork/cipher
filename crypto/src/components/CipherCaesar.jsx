@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Modal from './Modal'
+import ExerciseInput from './ExerciseInput'
 
 let arrayLetters = [
 	{letter: 'a', rusLetter: 'А'},
@@ -35,21 +37,31 @@ let arrayLetters = [
 	{letter: 'ya', rusLetter: 'Я'},
 	{letter: 'space', rusLetter: '_'}
 ]
+let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ'
 
-function ExerciseInput({ letter, rusLetter }) {
-	const [letterState, setLetterState] = useState('')
-
+function tezaurus() {
 	return <>
-		<div className="exercise-input">
-			<label htmlFor={ letter }>{rusLetter}</label>
-			<input type="text" id={ letter } name={ letter } value={ letterState } onChange={event => setLetterState(event.target.value)} className="word-input" placeholder="?" />
-		</div>
+		НЕГДЕ_В_ТРИДЕВЯТОМ_<br/>
+		ЦАРСТВЕ_В_ТРИДЕСЯТОМ<br/>
+		_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ<br/>
+		_СЛАВНЫЙ_ЦАРЬ_ДАДОН<br/>
+		_С_МОЛОДУ_БЫЛ_ГРОЗЕН<br/>
+		_ОН_И_СОСЕДЯМ_ТО_И_<br/>
+		ДЕЛО_НАНОСИЛ_ОБИДЫ_<br/>
+		СМЕЛО_НО_ПОД_СТАРОСТЬ<br/>
+		_ЗАХОТЕЛ_ОТДОХНУТЬ<br/>
+		_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ<br/>
+		_СЕБЕ_УСТРОИТЬ_ТУТ_<br/>
+		СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ<br/>
+		_СТАРОГО_ЦАРЯ_СТРАШНЫЙ<br/>
+		_ВРЕД ЕМУ_ТВОРЯ<br/>
 	</>
 }
 
 export default function CipherCaesar({ variant }) {
-	let tesarius = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ'
-	let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ'
+	const [prewin, setPrewin] = useState('')
+	const [modalActive, setModalActive] = useState(false)
+	
 	let cipherData = {
 		'shift' : variant,
 		'code' : {
@@ -116,28 +128,88 @@ export default function CipherCaesar({ variant }) {
 		return str
 	}
 
+	function getAnswer(shift) {
+		let rightAnswer = ''
+	
+		for (let i = 33; i <= 132; i++) { 
+			rightAnswer = rightAnswer + cipherData['alph'][i - shift]
+		}
+	
+		return rightAnswer
+	}
+
+	function onSubmitWin() {
+		let rightAnswer = getAnswer(cipherData['shift'])
+		let userAnswer = 'adffsffdsd'.toUpperCase()
+
+		if (userAnswer === rightAnswer) {
+			cipherData['win'] = true
+			cipherData['winText'] = 'Вы правильно ввели код'
+			cipherData['tried'] = true
+		} else {
+			cipherData['win'] = false
+			cipherData['winText'] = 'Вы неправильно ввели код'
+		}
+	}
+
+	function onSubmitPreWin(event) {
+		event.preventDefault()
+		// code
+	}
+
 	return <>
+		<Modal 
+			title="Тезарус"
+			text={ tezaurus() } 
+			active={ modalActive } 
+			setActive={ setModalActive } 
+		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
 				<p className="text">Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина "Сказка о Золотом Петушке".</p>
 			</div>
 			<div className="exercise-box__body-text">
-				<h2 className="text secret">{replaceLetters(fragmentOfText)}</h2>
+				<h2 className="text secret">
+					{ replaceLetters(fragmentOfText) }
+				</h2>
 			</div>
 			<form action="#" method="POST" className="exercise-form">
-				<h2 className="subtitle win-text">{cipherData['winText']}</h2>
+				<h2 className="subtitle win-text">
+					{ cipherData['winText'] }
+				</h2>
 				{arrayLetters.map(item => {
 					return <ExerciseInput letter={ item.letter } rusLetter={ item.rusLetter } key={ item.letter } />
 				})}
 				<div className="button-container">
-					<input type="submit" className="btn" value="Ввести" />
-					<button className="btn tezaurus-btn">Тезариус</button>
+					<input 
+						type="button" 
+						className="btn" 
+						onClick={onSubmitWin} 
+						value="Ввести" 
+					/>
+					<button 
+						type="button" 
+						className="btn" 
+						onClick={() => setModalActive(true)}
+					>Тезарус</button>
 				</div>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
 				<p className="text">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</p>
-				<input type="text" id="prewin" className="prewin-input" name="name" />
-				<input type="submit" value="Ввести" className="btn prewin-input-submit" />
+				<input 
+					type="text" 
+					value={ prewin } 
+					onChange={event => setPrewin(event.target.value)} className="prewin-input" 
+					name="name" 
+					disabled={ !cipherData['win'] } 
+				/>
+				<input 
+					type="submit" 
+					value="Ввести" 
+					onSubmit={onSubmitPreWin} 
+					disabled={ !cipherData['win'] } 
+					className="btn prewin-input-submit" 
+				/>
 			</form>
 		</div>
 	</>
