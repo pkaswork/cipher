@@ -21,6 +21,10 @@ export default function Homepage() {
 									<Link to="/exercise" state={{ from: [variant, 'cipherCaesar']}} className="text link-task">Перейти к решению</Link>
 								</article>
 								<article className="exercise-flex__elem">
+									<h2 className="title">Шифр Цезаря: поиск частоты</h2>
+									<Link to="/exercise" state={{ from: [variant, 'cipherCaesarFrequency']}} className="text link-task">Перейти к решению</Link>
+								</article>
+								<article className="exercise-flex__elem">
 									<h2 className="title">Шифр Гаммирования</h2>
 									<Link to="/exercise" state={{ from: [variant, 'gammingCode']}} className="text link-task">Перейти к решению</Link>
 								</article>
