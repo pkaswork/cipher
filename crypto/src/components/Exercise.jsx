@@ -1,10 +1,11 @@
 import { useLocation } from 'react-router-dom'
-import CipherCaesar from './CipherCaesar'
-import GammingCode from './GammingCode'
-import PermutationCipher from './PermutationCipher'
-import TrisemiusCipher from './TrisemiusCipher'
-import CipherDiffieHellman from './CipherDiffieHellman'
-import Rsa from './rsa'
+import CipherCaesar from './exercises/CipherCaesar'
+import СipherCaesarFrequency from './exercises/СipherCaesarFrequency'
+import GammingCode from './exercises/GammingCode'
+import PermutationCipher from './exercises/PermutationCipher'
+import TrisemiusCipher from './exercises/TrisemiusCipher'
+import CipherDiffieHellman from './exercises/CipherDiffieHellman'
+import Rsa from './exercises/rsa'
 
 /* eslint-disable react/prop-types */
 export default function Exercise() {
@@ -32,6 +33,8 @@ export default function Exercise() {
 	function getLayout() {
 		if (mode === 'cipherCaesar') {
 			return <CipherCaesar variant={ variant } />
+		} else if (mode === 'cipherCaesarFrequency') {
+			return <СipherCaesarFrequency variant={ variant } />
 		} else if (mode === 'gammingCode') {
 			return <GammingCode variant={ variant } />
 		} else if (mode === 'permutationCipher') {
