@@ -23,201 +23,203 @@ function tezaurus() {
 }
 
 export default function CipherCaesar({ variant }) {
+	const [winText, setWinText] = useState('Запишите код шифрованного текста')
+	const [win, setWin] = useState(false)
 	const [values, setValues] = useState([
 		{
-			id: 1,
+			id: 0,
 			label: 'A',
 			name: 'a',
 			value: ''
 		},
 		{
-			id: 2,
+			id: 1,
 			label: 'Б',
 			name: 'b',
 			value: ''
 		},
 		{
-			id: 3,
+			id: 2,
 			label: 'В',
 			name: 'v',
 			value: ''
 		},
 		{
-			id: 4,
+			id: 3,
 			label: 'Г',
 			name: 'g',
 			value: ''
 		},
 		{
-			id: 5,
+			id: 4,
 			label: 'Д',
 			name: 'd',
 			value: ''
 		},
 		{
-			id: 6,
+			id: 5,
 			label: 'Е',
 			name: 'e',
 			value: ''
 		},
 		{
-			id: 7,
+			id: 6,
 			label: 'Ж',
 			name: 'zh',
 			value: ''
 		},
 		{
-			id: 8,
+			id: 7,
 			label: 'З',
 			name: 'z',
 			value: ''
 		},
 		{
-			id: 9,
-			label: 'i',
-			name: 'И',
+			id: 8,
+			label: 'И',
+			name: 'i',
 			value: ''
 		},
 		{
-			id: 10,
+			id: 9,
 			label: 'Й',
 			name: 'iq',
 			value: ''
 		},
 		{
-			id: 11,
+			id: 10,
 			label: 'К',
 			name: 'k',
 			value: ''
 		},
 		{
-			id: 12,
+			id: 11,
 			label: 'Л',
 			name: 'l',
 			value: ''
 		},
 		{
-			id: 13,
+			id: 12,
 			label: 'М',
 			name: 'm',
 			value: ''
 		},
 		{
-			id: 14,
+			id: 13,
 			label: 'Н',
 			name: 'n',
 			value: ''
 		},
 		{
-			id: 15,
+			id: 14,
 			label: 'О',
 			name: 'o',
 			value: ''
 		},
 		{
-			id: 16,
+			id: 15,
 			label: 'П',
 			name: 'p',
 			value: ''
 		},
 		{
-			id: 17,
+			id: 16,
 			label: 'Р',
 			name: 'r',
 			value: ''
 		},
 		{
-			id: 18,
+			id: 17,
 			label: 'С',
 			name: 's',
 			value: ''
 		},
 		{
-			id: 19,
+			id: 18,
 			label: 'Т',
 			name: 't',
 			value: ''
 		},
 		{
-			id: 20,
+			id: 19,
 			label: 'У',
 			name: 'u',
 			value: ''
 		},
 		{
-			id: 21,
+			id: 20,
 			label: 'Ф',
 			name: 'f',
 			value: ''
 		},
 		{
-			id: 22,
+			id: 21,
 			label: 'Х',
 			name: 'h',
 			value: ''
 		},
 		{
-			id: 23,
+			id: 22,
 			label: 'Ц',
 			name: 'c',
 			value: ''
 		},
 		{
-			id: 24,
+			id: 23,
 			label: 'Ч',
 			name: 'ch',
 			value: ''
 		},
 		{
-			id: 25,
+			id: 24,
 			label: 'Ш',
 			name: 'sh',
 			value: ''
 		},
 		{
-			id: 26,
+			id: 25,
 			label: 'Щ',
 			name: 'shch',
 			value: ''
 		},
 		{
-			id: 27,
+			id: 26,
 			label: 'Ь',
 			name: 'mb',
 			value: ''
 		},
 		{
-			id: 28,
+			id: 27,
 			label: 'Ы',
 			name: 'bl',
 			value: ''
 		},
 		{
-			id: 29,
+			id: 28,
 			label: 'Ъ',
 			name: 'tb',
 			value: ''
 		},
 		{
-			id: 30,
+			id: 39,
 			label: 'Э',
 			name: 'ae',
 			value: ''
 		},
 		{
-			id: 31,
+			id: 30,
 			label: 'Ю',
 			name: 'yu',
 			value: ''
 		},
 		{
-			id: 32,
+			id: 31,
 			label: 'Я',
 			name: 'ya',
 			value: ''
 		},
 		{
-			id: 33,
+			id: 32,
 			label: '_',
 			name: 'space',
 			value: ''
@@ -225,6 +227,7 @@ export default function CipherCaesar({ variant }) {
 	])
 	const [prewin, setPrewin] = useState('')
 	const [modalActive, setModalActive] = useState(false)
+	const [tried, setTried] = useState(false)
 	
 	let cipherData = {
 		'shift' : variant,
@@ -237,10 +240,11 @@ export default function CipherCaesar({ variant }) {
 			'Щ' : '',  	'Ь' : '',     'Ы' : '',    'Э' : '', 	'Ю' : '',
 			'Я' : '',   '_' : '',
 		},
-		'alph' : ['А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_','А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_','А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_','А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_'],
-		'win' : false,
-		'winText' : 'Запишите код шифрованного текста',
-		'tried' : false
+		'alph' : [
+			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы', 'Ъ', 'Э','Ю','Я','_',
+			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_',
+			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы', 'Ъ', 'Э','Ю','Я','_',
+			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы', 'Ъ', 'Э','Ю','Я','_']
 	}
 
 	function setGame() {
@@ -295,46 +299,46 @@ export default function CipherCaesar({ variant }) {
 	function getAnswer(shift) {
 		let rightAnswer = ''
 	
-		for (let i = 33; i <= 132; i++) { 
+		for (let i = 98; i <= 130; i++) { 
 			rightAnswer = rightAnswer + cipherData['alph'][i - shift]
 		}
 	
 		return rightAnswer
 	}
 
-	function handleChange(e) {
-		const value = e.target.value
-		const name = e.target.name
+	function handleChange(event) {
 		const prevState = [...values]
-		// change value code
+		prevState.find(item => item.name === event.target.name).value = event.target.value
 		setValues(prevState)
 	}
 
 	function onSubmitWin() {
 		let rightAnswer = getAnswer(cipherData['shift'])
-		let userAnswer = 'adffsffdsd'.toUpperCase() // here will be values from inputs, this is just an example
+		let userAnswer = values.map(item => item.value).join('').toUpperCase()
+
+		console.log(rightAnswer)
 
 		if (userAnswer === rightAnswer) {
-			cipherData['win'] = true
-			cipherData['winText'] = 'Вы правильно ввели код'
-			cipherData['tried'] = true
+			setWin(true)
+			setWinText('Вы правильно ввели код')
 		} else {
-			cipherData['win'] = false
-			cipherData['winText'] = 'Вы неправильно ввели код'
+			setWin(false)
+			setWinText('Вы неправильно ввели код')
 		}
-	}
-
-	function onSubmitPreWin(event) {
-		event.preventDefault()
-		// code
 	}
 
 	return <>
 		<Modal 
-			title="Тезарус"
+			title="Тезаурус"
 			text={ tezaurus() } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
+		/>
+		<Modal 
+			title="Поздравляем!"
+			text={ prewin.toUpperCase() } 
+			active={ tried } 
+			setActive={ setTried } 
 		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
@@ -347,24 +351,20 @@ export default function CipherCaesar({ variant }) {
 			</div>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle win-text">
-					{ cipherData['winText'] }
+					{ winText }
 				</h2>
 				{values.map(item => {
 					return <>
 						<div key={ item.id } className="exercise-input">
-							<label 
-								key={ item.id }
-								htmlFor={ item.name }
-							>
+							<label htmlFor={ item.name }>
 								{ item.label }
 							</label>
 							<input 
 								type="text"
-								key={ item.id } 
-								id={ item.name } 
+								id={ item.id } 
 								name={ item.name } 
 								value={ item.value } 
-								onChange={ handleChange} 
+								onChange={e => handleChange(e)} 
 								className="word-input" 
 								placeholder="?" 
 							/>
@@ -382,7 +382,7 @@ export default function CipherCaesar({ variant }) {
 						type="button" 
 						className="btn" 
 						onClick={() => setModalActive(true)}
-					>Тезарус</button>
+					>Тезаурус</button>
 				</div>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
@@ -392,14 +392,14 @@ export default function CipherCaesar({ variant }) {
 					value={ prewin } 
 					onChange={event => setPrewin(event.target.value)} className="prewin-input" 
 					name="name" 
-					disabled={ !cipherData['win'] } 
+					disabled={ !win } 
 				/>
 				<input 
-					type="submit" 
+					type="button" 
 					value="Ввести" 
-					onSubmit={onSubmitPreWin} 
-					disabled={ !cipherData['win'] } 
-					className="btn prewin-input-submit" 
+					onClick={() => (prewin) ? setTried(true) : null} 
+					disabled={ !win } 
+					className="btn" 
 				/>
 			</form>
 		</div>
