@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import Image from '../assets/images/logo.svg'
 
-export default function Header() {
+export default function Footer() {
 	return <>
-		<header className="header">
+		<header className="footer">
 			<div className="container">
 				<a href="#" className="logo">
 					<img src={Image} alt="logo" />
