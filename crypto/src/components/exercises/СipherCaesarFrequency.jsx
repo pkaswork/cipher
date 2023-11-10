@@ -4,9 +4,10 @@ import Modal from '../Modal'
 let phrase = 'МОСКВА_СПАЛЕННАЯ_ПОЖАРОМ'
 let fragmentOfText = 'МОСКВА_СПАЛЕННАЯ_ПОЖАРОМ_НЕ_ТО_ЧТО_НЫНЕШНЕЕ_ПЛЕМЯ_ДОСАДНО_БЫЛО_БОЯ_ЖДАЛИ_ЕСТЬ_РАЗГУЛЯТЬСЯ_ГДЕ_НА_ВОЛЕ_И_ДУМАЛ_УГОЩУ_Я_ДРУГА_ЧТО_ТОЛКУ_В_ЭТАКОЙ_БЕЗДЕЛКЕ_И_СЛЫШНО_БЫЛО_ДО_РАССВЕТА_ВСЕ_ШУМНО_ВДРУГ_ЗАШЕВЕЛИЛОСЬ_РЕБЯТА_НЕ_МОСКВА_ЛЬ_ЗА_НАМИ_ФРАНЦУЗЫ_ДВИНУЛИСЬ_КАК_ТУЧИ_НОСИЛИСЬ_ЗНАМЕНА_КАК_ТЕНИ_ЧТО_ЗНАЧИТ_РУССКИЙ_БОЙ_УДАЛЫЙ_ЗАУТРО_БОЙ_ЗАТЕЯТЬ_НОВЫЙ_МОГУЧЕЕ_ЛИХОЕ_ПЛЕМЯ_ФРАНЦУЗУ_ОТДАНА_БОГАТЫРИ_НЕ_ВЫ_ВОРЧАЛИ_СТАРИКИ_ПОСТРОИЛИ_РЕДУТ_ПОСТОЙ_КА_БРАТ_МУСЬЮ_МЫ_ЖДАЛИ_ТРЕТИЙ_ДЕНЬ_КАК_ЛИКОВАЛ_ФРАНЦУЗ_СВЕРКНУЛ_ЗА_СТРОЕМ_СТРОЙ_УМРЕМТЕ_Ж_ПОД_МОСКВОЙ_И_ВСЕ_НА_НАШ_РЕДУТ_В_ДЫМУ_ОГОНЬ_БЛЕСТЕЛ_НАШ_РУКОПАШНЫЙ_БОЙ_И_ДО_КОНЦА_СТОЯТЬ_БОГАТЫРИ_НЕ_ВЫ_ВЕДЬ_БЫЛИ_Ж_СХВАТКИ_БОЕВЫЕ_ПЛОХАЯ_ИМ_ДОСТАЛАСЬ_ДОЛЯ_ЧТО_Ж_МЫ_НА_ЗИМНИЕ_КВАРТИРЫ_У_НАШИХ_УШКИ_НА_МАКУШКЕ_ЧТО_ТУТ_ХИТРИТЬ_ПОЖАЛУЙ_К_БОЮ_ПОВСЮДУ_СТАЛИ_СЛЫШНЫ_РЕЧИ_НО_ТИХ_БЫЛ_НАШ_БИВАК_ОТКРЫТЫЙ_ПОЛКОВНИК_НАШ_РОЖДЕН_БЫЛ_ХВАТОМ_КАК_НАШИ_БРАТЬЯ_УМИРАЛИ_УЛАНЫ_С_ПЕСТРЫМИ_ЗНАЧКАМИ_ЗВУЧАЛ_БУЛАТ_КАРТЕЧЬ_ВИЗЖАЛА_ЗЕМЛЯ_ТРЯСЛАСЬ_КАК_НАШИ_ГРУДИ_НО_ЗАТРЕЩАЛИ_БАРАБАНЫ_ПЛОХАЯ_ИМ_ДОСТАЛАСЬ_ДОЛЯ_ДА_ГОВОРЯТ_ЕЩЕ_КАКИЕ_НЕМНОГИЕ_ВЕРНУЛИСЬ_С_ПОЛЯ_НЕ_СМЕЮТ_ЧТО_ЛИ_КОМАНДИРЫ_ЧУТЬ_УТРО_ОСВЕТИЛО_ПУШКИ_УЖ_МЫ_ПОЙДЕМ_ЛОМИТЬ_СТЕНОЮ_ПОРА_ДОБРАТЬСЯ_ДО_КАРТЕЧИ_КТО_КИВЕР_ЧИСТИЛ_ВЕСЬ_ИЗБИТЫЙ_СЛУГА_ЦАРЮ_ОТЕЦ_СОЛДАТАМ_И_УМЕРЕТЬ_МЫ_ОБЕЩАЛИ_ДРАГУНЫ_С_КОНСКИМИ_ХВОСТАМИ_РУКА_БОЙЦОВ_КОЛОТЬ_УСТАЛА_СМЕШАЛИСЬ_В_КУЧУ_КОНИ_ЛЮДИ_И_ОТСТУПИЛИ_БУСУРМАНЫ_НЕМНОГИЕ_ВЕРНУЛИСЬ_С_ПОЛЯ_НЕДАРОМ_ПОМНИТ_ВСЯ_РОССИЯ_НЕ_БУДЬ_НА_ТО_ГОСПОДНЯ_ВОЛЯ_ЧУЖИЕ_ИЗОРВАТЬ_МУНДИРЫ_И_ЛЕСА_СИНИЕ_ВЕРХУШКИ_УЖ_ПОСТОИМ_МЫ_ГОЛОВОЮ_И_ВОТ_НА_ПОЛЕ_ГРОЗНОЙ_СЕЧИ_КТО_ШТЫК_ТОЧИЛ_ВОРЧА_СЕРДИТО_ДА_ЖАЛЬ_ЕГО_СРАЖЕН_БУЛАТОМ_И_КЛЯТВУ_ВЕРНОСТИ_СДЕРЖАЛИ_ВСЕ_ПРОМЕЛЬКНУЛИ_ПЕРЕД_НАМИ_И_ЯДРАМ_ПРОЛЕТАТЬ_МЕШАЛА_И_ЗАЛПЫ_ТЫСЯЧИ_ОРУДИЙ_ТОГДА_СЧИТАТЬ_МЫ_СТАЛИ_РАНЫ_КОГДА_Б_НА_ТО_НЕ_БОЖЬЯ_ВОЛЯ_ПРО_ДЕНЬ_БОРОДИНА_НЕ_ОТДАЛИ_Б_МОСКВЫ_О_РУССКИЕ_ШТЫКИ_ФРАНЦУЗЫ_ТУТ_КАК_ТУТ_ЗА_РОДИНУ_СВОЮ_НОЧНАЯ_ПАЛА_ТЕНЬ_КУСАЯ_ДЛИННЫЙ_УС_ОН_СПИТ_В_ЗЕМЛЕ_СЫРОЙ_МЫ_В_БОРОДИНСКИЙ_БОЙ_ВСЕ_ПОБЫВАЛИ_ТУТ_ГОРА_КРОВАВЫХ_ТЕЛ_СЛИЛИСЬ_В_ПРОТЯЖНЫЙ_ВОЙ_ТОВАРИЩЕЙ_СЧИТАТЬ_НЕ_ОТДАЛИ_Б_МОСКВЫ_ДА_БЫЛИ_ЛЮДИ_В_НАШЕ_ВРЕМЯ_МЫ_ДОЛГО_МОЛЧА_ОТСТУПАЛИ_И_ВОТ_НАШЛИ_БОЛЬШОЕ_ПОЛЕ_ЗАБИЛ_ЗАРЯД_Я_В_ПУШКУ_ТУГО_ДВА_ДНЯ_МЫ_БЫЛИ_В_ПЕРЕСТРЕЛКЕ_ПРИЛЕГ_ВЗДРЕМНУТЬ_Я_У_ЛАФЕТА_И_ТОЛЬКО_НЕБО_ЗАСВЕТИЛОСЬ_И_МОЛВИЛ_ОН_СВЕРКНУВ_ОЧАМИ_НУ_Ж_БЫЛ_ДЕНЕК_СКВОЗЬ_ДЫМ_ЛЕТУЧИЙ_ВАМ_НЕ_ВИДАТЬ_ТАКИХ_СРАЖЕНИЙ_ИЗВЕДАЛ_ВРАГ_В_ТОТ_ДЕНЬ_НЕМАЛО_ВОТ_СМЕРКЛОСЬ_БЫЛИ_ВСЕ_ГОТОВЫ_ДА_БЫЛИ_ЛЮДИ_В_НАШЕ_ВРЕМЯ_СКАЖИ_КА_ДЯДЯ_ВЕДЬ_НЕДАРОМ'
 
-export default function СipherCaesarFrequency({ variant }) {
+export default function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 	const [winText, setWinText] = useState('Определите код алфавита текста:')
 	const [win, setWin] = useState(false)
+	const [tried, setTried] = useState(false)
 	const [values, setValues] = useState([
 		{
 			id: 0,
@@ -207,10 +208,13 @@ export default function СipherCaesarFrequency({ variant }) {
 			value: ''
 		},
 	])
+	const [phraseVal, setPhraseVal] = useState('')
+	const [snpVal, setSnpVal] = useState('')
 	const [modalActive, setModalActive] = useState(false)
+	const [modalWin, setModalWin] = useState(false)
 
 	let cipherData = {
-		'shift' : variant,
+		'shift' : +variant,
 		'code' : {
 			'А' : '',    'Б' : '',    'В' : '',    'Г' : '',    'Д' : '',
 			'Е' : '',    'Ж' : '',   'З' : '',    'И' : '',	'Й' : '',
@@ -525,12 +529,26 @@ export default function СipherCaesarFrequency({ variant }) {
 		}
 	}
 
+	function onSubmitPreWin() {
+		let rightSNP = replaceLetters(`${surname}_${name}_${patronymic}`)
+
+		if (rightSNP === snpVal.toUpperCase()) {
+			setModalWin(true)
+		}
+	}
+
 	return <>
 		<Modal 
 			title="Тезаурус"
 			text={ fragmentOfText } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
+		/>
+		<Modal 
+			title="Поздравляем!"
+			text={ `${surname} ${name} ${patronymic}` } 
+			active={ modalWin } 
+			setActive={ setModalWin } 
 		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
@@ -607,6 +625,8 @@ export default function СipherCaesarFrequency({ variant }) {
 				<input 
 					type="text" 
 					name="name"
+					value={ phraseVal }
+					onChange={event => setPhraseVal(event.target.value)}
 					className="prewin-input" 
 					disabled={ !win } 
 				/>
@@ -614,6 +634,7 @@ export default function СipherCaesarFrequency({ variant }) {
 					type="button" 
 					value="Ввести" 
 					className="btn"
+					onClick={() => (phrase === phraseVal.toUpperCase()) ? setTried(true) : null}
 					disabled={ !win } 
 				/>
 			</form>
@@ -622,14 +643,17 @@ export default function СipherCaesarFrequency({ variant }) {
 				<input 
 					type="text" 
 					name="name"
-					className="prewin-input" 
-					disabled={ !win } 
+					className="prewin-input"
+					value={snpVal}
+					onChange={event => setSnpVal(event.target.value)} 
+					disabled={ !tried } 
 				/>
 				<input 
 					type="button" 
 					value="Ввести" 
 					className="btn"
-					disabled={ !win } 
+					onClick={onSubmitPreWin}
+					disabled={ !tried } 
 				/>
 			</form>
 		</div>
