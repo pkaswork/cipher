@@ -92,6 +92,8 @@ body {
 	top: 50%;
 	left: 50%;
 	display: none;
+	max-height: 500px;
+	max-width: 320px;
 	flex-direction: column;
 	gap: 20px;
 	min-width: 200px;
@@ -101,6 +103,10 @@ body {
 	border-radius: 20px;
 	backdrop-filter: blur(15px);
 	z-index: 1000;
+}
+
+.modal .text {
+	overflow-y: scroll
 }
 
 .modal.active {
@@ -338,7 +344,7 @@ body {
 	padding: 30px 6em;
 }
 
-.exercise-box__body-text:nth-child(2) .text {
+.exercise-box__body-text .subtitle {
 	text-align: center;
    word-wrap: break-word;
 }
@@ -426,7 +432,7 @@ body {
 	border-radius: 4px;
 }
 
-.win-text {
+.exercise-form .subtitle {
 	width: 100%;
 	text-align: center;
 }
