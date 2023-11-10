@@ -11,6 +11,9 @@ import Rsa from './exercises/rsa'
 export default function Exercise() {
 	const location = useLocation()
 	const { from } = location.state
+	const surname = from[0]
+	const name = from[1]
+	const patronymic = from[2]
 	const variant = from[3]
 	const mode = from[4]
 
@@ -32,19 +35,19 @@ export default function Exercise() {
 
 	function getLayout() {
 		if (mode === 'cipherCaesar') {
-			return <CipherCaesar variant={ variant } />
+			return <CipherCaesar surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'cipherCaesarFrequency') {
-			return <СipherCaesarFrequency variant={ variant } />
+			return <СipherCaesarFrequency surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'gammingCode') {
-			return <GammingCode variant={ variant } />
+			return <GammingCode surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'permutationCipher') {
-			return <PermutationCipher variant={ variant } />
+			return <PermutationCipher surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'trisemiusCipher') {
-			return <TrisemiusCipher variant={ variant } />
+			return <TrisemiusCipher surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'cipherDiffieHellman') {
-			return <CipherDiffieHellman variant={ variant } />
+			return <CipherDiffieHellman surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		} else if (mode === 'rsa') {
-			return <Rsa variant={ variant } />
+			return <Rsa surname={surname} name={name} patronymic={patronymic} variant={ variant } />
 		}
 	}
 	
