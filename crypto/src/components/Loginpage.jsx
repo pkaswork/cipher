@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
-import Header from './Headerfooter'
+import Header from './Header'
 import { useState } from 'react'
 
 export default function Loginpage() {
