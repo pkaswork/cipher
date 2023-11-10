@@ -2,25 +2,7 @@ import { useState } from 'react'
 import Modal from '../Modal'
 
 let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ'
-
-function tezaurus() {
-	return <>
-		НЕГДЕ_В_ТРИДЕВЯТОМ_<br/>
-		ЦАРСТВЕ_В_ТРИДЕСЯТОМ<br/>
-		_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ<br/>
-		_СЛАВНЫЙ_ЦАРЬ_ДАДОН<br/>
-		_С_МОЛОДУ_БЫЛ_ГРОЗЕН<br/>
-		_ОН_И_СОСЕДЯМ_ТО_И_<br/>
-		ДЕЛО_НАНОСИЛ_ОБИДЫ_<br/>
-		СМЕЛО_НО_ПОД_СТАРОСТЬ<br/>
-		_ЗАХОТЕЛ_ОТДОХНУТЬ<br/>
-		_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ<br/>
-		_СЕБЕ_УСТРОИТЬ_ТУТ_<br/>
-		СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ<br/>
-		_СТАРОГО_ЦАРЯ_СТРАШНЫЙ<br/>
-		_ВРЕД ЕМУ_ТВОРЯ<br/>
-	</>
-}
+let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ'
 
 export default function CipherCaesar({ variant }) {
 	const [winText, setWinText] = useState('Запишите код шифрованного текста')
@@ -316,8 +298,6 @@ export default function CipherCaesar({ variant }) {
 		let rightAnswer = getAnswer(cipherData['shift'])
 		let userAnswer = values.map(item => item.value).join('').toUpperCase()
 
-		console.log(rightAnswer)
-
 		if (userAnswer === rightAnswer) {
 			setWin(true)
 			setWinText('Вы правильно ввели код')
@@ -330,7 +310,7 @@ export default function CipherCaesar({ variant }) {
 	return <>
 		<Modal 
 			title="Тезаурус"
-			text={ tezaurus() } 
+			text={ tezaurus } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>
@@ -345,12 +325,12 @@ export default function CipherCaesar({ variant }) {
 				<p className="text">Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина "Сказка о Золотом Петушке".</p>
 			</div>
 			<div className="exercise-box__body-text">
-				<h2 className="text secret">
+				<h2 className="subtitle">
 					{ replaceLetters(fragmentOfText) }
 				</h2>
 			</div>
 			<form action="#" method="POST" className="exercise-form">
-				<h2 className="subtitle win-text">
+				<h2 className="subtitle">
 					{ winText }
 				</h2>
 				{values.map(item => {
@@ -390,7 +370,8 @@ export default function CipherCaesar({ variant }) {
 				<input 
 					type="text" 
 					value={ prewin } 
-					onChange={event => setPrewin(event.target.value)} className="prewin-input" 
+					onChange={event => setPrewin(event.target.value)} 
+					className="prewin-input" 
 					name="name" 
 					disabled={ !win } 
 				/>
