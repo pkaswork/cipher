@@ -4,7 +4,7 @@ import Modal from '../Modal'
 let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ'
 let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ'
 
-export default function CipherCaesar({ variant }) {
+export default function CipherCaesar({ surname, name, patronymic, variant }) {
 	const [winText, setWinText] = useState('Запишите код шифрованного текста')
 	const [win, setWin] = useState(false)
 	const [values, setValues] = useState([
@@ -212,7 +212,7 @@ export default function CipherCaesar({ variant }) {
 	const [tried, setTried] = useState(false)
 	
 	let cipherData = {
-		'shift' : variant,
+		'shift' : +variant,
 		'code' : {
 			'А' : '',    'Б' : '',    'В' : '',    'Г' : '',    'Д' : '',
 			'Е' : '',    'Ж' : '',   'З' : '',    'И' : '',	'Й' : '',
@@ -307,6 +307,14 @@ export default function CipherCaesar({ variant }) {
 		}
 	}
 
+	function onSubmitPreWin() {
+		let rightSNP = replaceLetters(`${surname}_${name}_${patronymic}`)
+
+		if (rightSNP === prewin.toUpperCase()) {
+			setTried(true)
+		}
+	}
+
 	return <>
 		<Modal 
 			title="Тезаурус"
@@ -316,7 +324,7 @@ export default function CipherCaesar({ variant }) {
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ prewin.toUpperCase() } 
+			text={ `${surname} ${name} ${patronymic}` } 
 			active={ tried } 
 			setActive={ setTried } 
 		/>
@@ -378,7 +386,7 @@ export default function CipherCaesar({ variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={() => (prewin) ? setTried(true) : null} 
+					onClick={onSubmitPreWin} 
 					disabled={ !win } 
 					className="btn" 
 				/>
