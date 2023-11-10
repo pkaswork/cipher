@@ -11,8 +11,8 @@ import Rsa from './exercises/rsa'
 export default function Exercise() {
 	const location = useLocation()
 	const { from } = location.state
-	const variant = from[0]
-	const mode = from[1]
+	const variant = from[3]
+	const mode = from[4]
 
 	function getName() {
 		if (mode === 'cipherCaesar') {
