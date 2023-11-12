@@ -14,8 +14,13 @@
 # Команда проекта
 
 [Юлия](https://github.com/iamlorddop)
+
 [Александр](https://github.com/drinklean)
+
 Максим
+
 Яна
+
 Эмилия
+
 Кирилл
