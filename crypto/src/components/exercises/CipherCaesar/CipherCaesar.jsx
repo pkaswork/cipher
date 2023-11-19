@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import Modal from '../Modal'
+import React, { useState } from 'react';
+import Modal from '../../Modal/Modal';
 
-let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ'
-let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ'
+let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
+let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ';
 
-export default function CipherCaesar({ surname, name, patronymic, variant }) {
-	const [winText, setWinText] = useState('Запишите код шифрованного текста')
-	const [win, setWin] = useState(false)
+function CipherCaesar({ surname, name, patronymic, variant }) {
+	const [winText, setWinText] = useState('Запишите код шифрованного текста');
+	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
 			id: 0,
@@ -206,10 +206,10 @@ export default function CipherCaesar({ surname, name, patronymic, variant }) {
 			name: 'space',
 			value: ''
 		},
-	])
-	const [prewin, setPrewin] = useState('')
-	const [modalActive, setModalActive] = useState(false)
-	const [tried, setTried] = useState(false)
+	]);
+	const [prewin, setPrewin] = useState('');
+	const [modalActive, setModalActive] = useState(false);
+	const [tried, setTried] = useState(false);
 	
 	let cipherData = {
 		'shift' : +variant,
@@ -227,95 +227,96 @@ export default function CipherCaesar({ surname, name, patronymic, variant }) {
 			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Э','Ю','Я','_',
 			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы', 'Ъ', 'Э','Ю','Я','_',
 			'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы', 'Ъ', 'Э','Ю','Я','_']
-	}
+	};
 
 	function setGame() {
-		cipherData['code']['А'] = cipherData['alph'][cipherData['shift']]
-		cipherData['code']['Б'] = cipherData['alph'][cipherData['shift'] + 1]
-		cipherData['code']['В'] = cipherData['alph'][cipherData['shift'] + 2]
-		cipherData['code']['Г'] = cipherData['alph'][cipherData['shift'] + 3]
-		cipherData['code']['Д'] = cipherData['alph'][cipherData['shift'] + 4]
-		cipherData['code']['Е'] = cipherData['alph'][cipherData['shift'] + 5]
-		cipherData['code']['Ж'] = cipherData['alph'][cipherData['shift'] + 6]
-		cipherData['code']['З'] = cipherData['alph'][cipherData['shift'] + 7]
-		cipherData['code']['И'] = cipherData['alph'][cipherData['shift'] + 8]
-		cipherData['code']['Й'] = cipherData['alph'][cipherData['shift'] + 9]
-		cipherData['code']['К'] = cipherData['alph'][cipherData['shift'] + 10]
-		cipherData['code']['Л'] = cipherData['alph'][cipherData['shift'] + 11]
-		cipherData['code']['М'] = cipherData['alph'][cipherData['shift'] + 12]
-		cipherData['code']['Н'] = cipherData['alph'][cipherData['shift'] + 13]
-		cipherData['code']['О'] = cipherData['alph'][cipherData['shift'] + 14]
-		cipherData['code']['П'] = cipherData['alph'][cipherData['shift'] + 15]
-		cipherData['code']['Р'] = cipherData['alph'][cipherData['shift'] + 16]
-		cipherData['code']['С'] = cipherData['alph'][cipherData['shift'] + 17]
-		cipherData['code']['Т'] = cipherData['alph'][cipherData['shift'] + 18]
-		cipherData['code']['У'] = cipherData['alph'][cipherData['shift'] + 19]
-		cipherData['code']['Ф'] = cipherData['alph'][cipherData['shift'] + 20]
-		cipherData['code']['Х'] = cipherData['alph'][cipherData['shift'] + 21]
-		cipherData['code']['Ц'] = cipherData['alph'][cipherData['shift'] + 22]
-		cipherData['code']['Ч'] = cipherData['alph'][cipherData['shift'] + 23]
-		cipherData['code']['Ш'] = cipherData['alph'][cipherData['shift'] + 24]
-		cipherData['code']['Щ'] = cipherData['alph'][cipherData['shift'] + 25]
-		cipherData['code']['Ь'] = cipherData['alph'][cipherData['shift'] + 26]
-		cipherData['code']['Ы'] = cipherData['alph'][cipherData['shift'] + 27]
-		cipherData['code']['Ъ'] = cipherData['alph'][cipherData['shift'] + 28]
-		cipherData['code']['Э'] = cipherData['alph'][cipherData['shift'] + 29]
-		cipherData['code']['Ю'] = cipherData['alph'][cipherData['shift'] + 30]
-		cipherData['code']['Я'] = cipherData['alph'][cipherData['shift'] + 31]
-		cipherData['code']['_'] = cipherData['alph'][cipherData['shift'] + 32]
+		cipherData['code']['А'] = cipherData['alph'][cipherData['shift']];
+		cipherData['code']['Б'] = cipherData['alph'][cipherData['shift'] + 1];
+		cipherData['code']['В'] = cipherData['alph'][cipherData['shift'] + 2];
+		cipherData['code']['Г'] = cipherData['alph'][cipherData['shift'] + 3];
+		cipherData['code']['Д'] = cipherData['alph'][cipherData['shift'] + 4];
+		cipherData['code']['Е'] = cipherData['alph'][cipherData['shift'] + 5];
+		cipherData['code']['Ж'] = cipherData['alph'][cipherData['shift'] + 6];
+		cipherData['code']['З'] = cipherData['alph'][cipherData['shift'] + 7];
+		cipherData['code']['И'] = cipherData['alph'][cipherData['shift'] + 8];
+		cipherData['code']['Й'] = cipherData['alph'][cipherData['shift'] + 9];
+		cipherData['code']['К'] = cipherData['alph'][cipherData['shift'] + 10];
+		cipherData['code']['Л'] = cipherData['alph'][cipherData['shift'] + 11];
+		cipherData['code']['М'] = cipherData['alph'][cipherData['shift'] + 12];
+		cipherData['code']['Н'] = cipherData['alph'][cipherData['shift'] + 13];
+		cipherData['code']['О'] = cipherData['alph'][cipherData['shift'] + 14];
+		cipherData['code']['П'] = cipherData['alph'][cipherData['shift'] + 15];
+		cipherData['code']['Р'] = cipherData['alph'][cipherData['shift'] + 16];
+		cipherData['code']['С'] = cipherData['alph'][cipherData['shift'] + 17];
+		cipherData['code']['Т'] = cipherData['alph'][cipherData['shift'] + 18];
+		cipherData['code']['У'] = cipherData['alph'][cipherData['shift'] + 19];
+		cipherData['code']['Ф'] = cipherData['alph'][cipherData['shift'] + 20];
+		cipherData['code']['Х'] = cipherData['alph'][cipherData['shift'] + 21];
+		cipherData['code']['Ц'] = cipherData['alph'][cipherData['shift'] + 22];
+		cipherData['code']['Ч'] = cipherData['alph'][cipherData['shift'] + 23];
+		cipherData['code']['Ш'] = cipherData['alph'][cipherData['shift'] + 24];
+		cipherData['code']['Щ'] = cipherData['alph'][cipherData['shift'] + 25];
+		cipherData['code']['Ь'] = cipherData['alph'][cipherData['shift'] + 26];
+		cipherData['code']['Ы'] = cipherData['alph'][cipherData['shift'] + 27];
+		cipherData['code']['Ъ'] = cipherData['alph'][cipherData['shift'] + 28];
+		cipherData['code']['Э'] = cipherData['alph'][cipherData['shift'] + 29];
+		cipherData['code']['Ю'] = cipherData['alph'][cipherData['shift'] + 30];
+		cipherData['code']['Я'] = cipherData['alph'][cipherData['shift'] + 31];
+		cipherData['code']['_'] = cipherData['alph'][cipherData['shift'] + 32];
 	}
 
-	setGame()
+	setGame();
 
 	function replaceLetters(text) {
-		let replaced = text.toUpperCase()
-		let str = ''
+		let replaced = text.toUpperCase();
+		let str = '';
 		
 		for (let i = 0; i < replaced.length; i++) {
-			str += cipherData['code'][replaced[i]]
+			str += cipherData['code'][replaced[i]];
 		}
 	
-		return str
+		return str;
 	}
 
 	function getAnswer(shift) {
-		let rightAnswer = ''
+		let rightAnswer = '';
 	
 		for (let i = 98; i <= 130; i++) { 
-			rightAnswer = rightAnswer + cipherData['alph'][i - shift]
+			rightAnswer = rightAnswer + cipherData['alph'][i - shift];
 		}
 	
-		return rightAnswer
+		return rightAnswer;
 	}
 
 	function handleChange(event) {
-		const prevState = [...values]
-		prevState.find(item => item.name === event.target.name).value = event.target.value
-		setValues(prevState)
+		const prevState = [...values];
+		prevState.find(item => item.name === event.target.name).value = event.target.value;
+		setValues(prevState);
 	}
 
 	function onSubmitWin() {
-		let rightAnswer = getAnswer(cipherData['shift'])
-		let userAnswer = values.map(item => item.value).join('').toUpperCase()
+		let rightAnswer = getAnswer(cipherData['shift']);
+		let userAnswer = values.map(item => item.value).join('').toUpperCase();
 
 		if (userAnswer === rightAnswer) {
-			setWin(true)
-			setWinText('Вы правильно ввели код')
+			setWin(true);
+			setWinText('Вы правильно ввели код');
 		} else {
-			setWin(false)
-			setWinText('Вы неправильно ввели код')
+			setWin(false);
+			setWinText('Вы неправильно ввели код');
 		}
 	}
 
 	function onSubmitPreWin() {
-		let rightSNP = replaceLetters(`${surname}_${name}_${patronymic}`)
+		let rightSNP = replaceLetters(`${surname}_${name}_${patronymic}`);
 
 		if (rightSNP === prewin.toUpperCase()) {
-			setTried(true)
+			setTried(true);
 		}
 	}
 
-	return <>
+	return (
+	<>
 		<Modal 
 			title="Тезаурус"
 			text={ tezaurus } 
@@ -393,4 +394,7 @@ export default function CipherCaesar({ surname, name, patronymic, variant }) {
 			</form>
 		</div>
 	</>
+	);
 }
+
+export default CipherCaesar;

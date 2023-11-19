@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Homepage from './components/Homepage'
-import Exercisepage from './components/Exercisepage'
-import Loginpage from './components/Loginpage'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Homepage from './components/Homepage/Homepage';
+import Exercisepage from './components/Exercisepage/Exercisepage';
+import Loginpage from './components/Loginpage/Loginpage';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-export default function Homepage() {
-	const location = useLocation()
-	const { from } = location.state
-	const surname = from[0]
-	const name = from[1]
-	const patronymic = from[2]
-	const variant = from[3]
+function Homepage() {
+	const location = useLocation();
+	const { from } = location.state;
+	const surname = from[0];
+	const name = from[1];
+	const patronymic = from[2];
+	const variant = from[3];
 
-	return <>
+	return (
+	<>
 		<div className="wrapper">
 			<div className="content">
 				<Header 
@@ -63,4 +65,7 @@ export default function Homepage() {
 			<Footer />
 		</div>
 	</>
+	);
 }
+
+export default Homepage;

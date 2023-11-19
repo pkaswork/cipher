@@ -1,5 +1,8 @@
-export default function Modal({ title, text, active, setActive }) {
-	return <>
+import React from 'react';
+
+function Modal({ title, text, active, setActive }) {
+	return (
+	<>
 		<div className={active ? "modal-bg active" : "modal-bg"} onClick={() => setActive(false)}></div>
 		<div className={active ? "modal active" : "modal"}>
 			<div className="cross" onClick={() => setActive(false)}>
@@ -11,4 +14,7 @@ export default function Modal({ title, text, active, setActive }) {
 			</p>
 		</div>
 	</>
+	);
 }
+
+export default Modal;

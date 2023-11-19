@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom'
-import Footer from './Footer'
-import Header from './Header'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
-export default function Loginpage() {
-	const [surname, setSurname] = useState('')
-	const [name, setName] = useState('')
-	const [patronymic, setPatronymic] = useState('')
-	const [variant, setVariant] = useState('')
+function Loginpage() {
+	const [surname, setSurname] = useState('');
+	const [name, setName] = useState('');
+	const [patronymic, setPatronymic] = useState('');
+	const [variant, setVariant] = useState('');
 
-	return <>
+	return (
+	<>
 		<div className="wrapper">
 			<div className="content">
 				<Header />
@@ -84,4 +85,7 @@ export default function Loginpage() {
 			<Footer />
 		</div>
 	</>
+	);
 }
+
+export default Loginpage;

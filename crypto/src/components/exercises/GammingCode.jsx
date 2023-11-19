@@ -1,5 +1,11 @@
-export default function GammingCode({ variant }) {
-	return <>
+import React, { useState } from 'react';
+
+function GammingCode({ variant }) {
+	return (
+	<>
 		gammingCode
 	</>
+	);
 }
+
+export default GammingCode;

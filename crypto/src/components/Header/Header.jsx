@@ -1,5 +1,6 @@
+import React from 'react';
 import { Link } from 'react-router-dom'
-import Image from '../assets/images/logo.svg'
+import Image from '../../assets/images/logo.svg'
 
 export default function Header({ isLogin, surname, name, patronymic }) {
 	return <>

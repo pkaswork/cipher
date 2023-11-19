@@ -1,5 +1,11 @@
-export default function Rsa({ variant }) {
-	return <>
+import React, { useState } from 'react';
+
+function Rsa({ variant }) {
+	return (
+	<>
 		RSA
 	</>
+	);
 }
+
+export default Rsa;
