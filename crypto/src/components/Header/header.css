@@ -1,0 +1,22 @@
+.header .container {
+	border-bottom: 2px solid #eee;
+}
+
+.header-flex {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.header-flex__elem {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.header-flex__elem .text {
+	font-weight: 700;
+	opacity: .7;
+}
