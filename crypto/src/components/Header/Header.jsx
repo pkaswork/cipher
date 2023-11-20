@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './header.css';
 import Image from '../../assets/images/logo.svg'
 
-export default function Header({ isLogin, surname, name, patronymic }) {
+export default function Header({ isLogin, surname, name }) {
 	return <>
 		<header className="header">
 			<div className="container">
@@ -12,13 +12,30 @@ export default function Header({ isLogin, surname, name, patronymic }) {
 						<a href="#" className="logo">
 							<img src={Image} alt="logo" />
 						</a>
-						<Link to="/">Главная</Link>
-						<Link to="/">Теория</Link>
-						{(isLogin === true) ? <Link to="/">Задания</Link> : null}
+						<nav className="header-nav">
+							<ul className="nav-list">
+								<li className="nav-list__item">
+									<Link to="/" className={(location.pathname === '/') ? 'active nav-link' : 'nav-link'}>Главная</Link>
+								</li>
+								<li className="nav-list__item">
+									<Link to="/theory" className={(location.pathname === '/theory') ? 'active nav-link' : 'nav-link'}>Теория</Link>
+								</li>
+								{(isLogin === true) ? <li className="nav-list__item"><Link to="/exercises" className={(location.pathname === '/exercises') ? 'active nav-link' : 'nav-link'}>Задания</Link></li> : null}
+							</ul>
+						</nav>
+						
 					</div>
 					<div className="header-flex__elem">
-						<p className="text name-text">{surname} {name} {patronymic}</p>
-						<Link to="/auth">{(isLogin === true) ? 'Выйти' : 'Войти'}</Link>
+						<p className="nav-link">{surname} {name}</p>
+						<Link to="/auth" className="nav-link">{(isLogin === true) ? 'Выйти' : 'Войти'}</Link>
+					</div>
+				</div>
+				<div className="burger-menu">
+					<a href="#" className="logo">
+						<img src={Image} alt="logo" />
+					</a>
+					<div className="burger">
+						<span></span>
 					</div>
 				</div>
 			</div>
