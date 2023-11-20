@@ -1,4 +1,5 @@
 import React from 'react';
+import './modal.css';
 
 function Modal({ title, text, active, setActive }) {
 	return (
