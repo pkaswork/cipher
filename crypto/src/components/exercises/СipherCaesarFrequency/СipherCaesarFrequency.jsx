@@ -540,7 +540,7 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 	return (
 	<>
 		<Modal 
-			title="Тезаурус"
+			title="Текст"
 			text={ fragmentOfText } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
@@ -568,7 +568,7 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 				</h2>
 				{countFrequency(fragmentOfText).map(item => (
 					<>
-						<div key={ item.id } className="exercise-input">
+						<div key={ item.id } className="exercise-input exercise-input-frequency">
 							<label htmlFor={ item.name }>
 								{ item.label }
 							</label>
