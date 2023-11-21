@@ -547,7 +547,7 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name} ${patronymic}` } 
+			text={ `${surname} ${name}` } 
 			active={ modalWin } 
 			setActive={ setModalWin } 
 		/>
@@ -559,8 +559,11 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 			</div>
 			<div className="exercise-box__body-text">
 				<h2 className="subtitle">
-					{ replaceLetters(phrase) }
+					Зашифрованный текст
 				</h2>
+				<p className="text">
+					{ replaceLetters(phrase) }
+				</p>
 			</div>
 			<div className="exercise-box__body-text exercise-form">
 				<h2 className="subtitle">
@@ -622,7 +625,7 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 				</div>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<p className="text">Запишите дешифрованную фразу:</p>
+				<h2 className="subtitle">Запишите дешифрованную фразу</h2>
 				<input 
 					type="text" 
 					name="name"
@@ -640,10 +643,10 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 				/>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<p className="text">Используя код алфавита, зашифруйте с его помошью свое ФИО:</p>
+				<h2 className="subtitle">Используя код алфавита, зашифруйте с его помошью свое ФИО:</h2>
 				<input 
 					type="text" 
-					name="name"
+					name="prewin"
 					className="prewin-input"
 					value={snpVal}
 					onChange={event => setSnpVal(event.target.value)} 

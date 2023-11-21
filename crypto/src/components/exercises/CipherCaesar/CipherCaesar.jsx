@@ -325,7 +325,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name} ${patronymic}` } 
+			text={ `${surname} ${name}` } 
 			active={ tried } 
 			setActive={ setTried } 
 		/>
@@ -335,8 +335,11 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 			</div>
 			<div className="exercise-box__body-text">
 				<h2 className="subtitle">
-					{ replaceLetters(fragmentOfText) }
+					Зашифрованный текст
 				</h2>
+				<p className="text">
+					{ replaceLetters(fragmentOfText) }
+				</p>
 			</div>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle">
@@ -375,13 +378,13 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 				</div>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<p className="text">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</p>
+				<h2 className="subtitle">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</h2>
 				<input 
 					type="text" 
 					value={ prewin } 
 					onChange={event => setPrewin(event.target.value)} 
 					className="prewin-input" 
-					name="name" 
+					name="prewin" 
 					disabled={ !win } 
 				/>
 				<input 
