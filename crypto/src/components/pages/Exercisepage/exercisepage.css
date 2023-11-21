@@ -1,5 +1,6 @@
 .exercise-page {
 	position: relative;
+	overflow: hidden;
 }
 
 .exercise-page .title {
@@ -92,6 +93,20 @@
 	-webkit-text-fill-color: transparent;
 }
 
+.exercise-list {
+	margin: 0 auto;
+	padding: 0 20px;
+	max-width: 380px;
+	height: 200px;
+	overflow: scroll;
+}
+
+.exercise-list__item {
+   margin: 0 auto;
+	max-width: 320px;
+	text-align: left;
+}
+
 .exercise-form,
 .exercise-box__body-text {
 	padding: 30px;
@@ -118,7 +133,7 @@
 	padding: 30px 6em;
 }
 
-.exercise-box__body-text .subtitle {
+.exercise-box__body-text {
 	text-align: center;
    word-wrap: break-word;
 }
@@ -166,6 +181,15 @@
 .exercise-form .subtitle {
 	width: 100%;
 	text-align: center;
+}
+
+.exercise-form-button {
+	width: 100%;
+}
+
+.exercise-form-button input {
+	margin: 0 auto ;
+	display: block;
 }
 
 @media (max-width: 1160px) {
