@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
 
-let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
-let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ';
+let fragmentOfText = 'ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
 
-function CipherCaesarStrip({ surname, name, patronymic, variant }) {
+function CipherCaesarStrip({ surname, name, variant }) {
 	const [winText, setWinText] = useState('Запишите код шифрованного текста');
-	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
 			id: 0,
@@ -207,12 +205,18 @@ function CipherCaesarStrip({ surname, name, patronymic, variant }) {
 			value: ''
 		},
 	]);
+	const [decrypted, setDecrypted] = useState('');
+	const [keyVal, setKeyVal] = useState('');
+	const [winDecrypted, setWinDecrypted] = useState(false);
+	const [winKey, setWinKey] = useState(false);
+	const [win, setWin] = useState(false);
 	const [prewin, setPrewin] = useState('');
 	const [modalActive, setModalActive] = useState(false);
-	const [tried, setTried] = useState(false);
-	
+	const shift = 81 - +variant;
+	const key = shift % 33;
+
 	let cipherData = {
-		'shift' : +variant,
+		'shift' : shift,
 		'code' : {
 			'А' : '',    'Б' : '',    'В' : '',    'Г' : '',    'Д' : '',
 			'Е' : '',    'Ж' : '',   'З' : '',    'И' : '',	'Й' : '',
@@ -308,36 +312,67 @@ function CipherCaesarStrip({ surname, name, patronymic, variant }) {
 	}
 
 	function onSubmitPreWin() {
-		let rightSNP = replaceLetters(`${surname}_${name}_${patronymic}`);
+		let rightSNP = replaceLetters(`${surname}`);
 
 		if (rightSNP === prewin.toUpperCase()) {
-			setTried(true);
+			setModalActive(true);
 		}
 	}
 
 	return (
 	<>
 		<Modal 
-			title="Тезаурус"
-			text={ tezaurus } 
+			title="Поздравляем!"
+			text={ `${surname} ${name}` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>
-		<Modal 
-			title="Поздравляем!"
-			text={ `${surname} ${name} ${patronymic}` } 
-			active={ tried } 
-			setActive={ setTried } 
-		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
-				<p className="text">Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина "Сказка о Золотом Петушке".</p>
+				<p className="text">
+					Некоторый текст зашифрован кодом Цезаря. Необходимо расшифровать этот текст методом <b>«Полосок»</b>. Определите <b>ключ</b> шифра и, воспользовавшись им, зашифруйте свою фамилию.
+				</p>
 			</div>
 			<div className="exercise-box__body-text">
 				<h2 className="subtitle">
-					{ replaceLetters(fragmentOfText) }
+					Зашифрованный текст
 				</h2>
+				<p className="text">{ replaceLetters(fragmentOfText) }</p>
 			</div>
+			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">Расшифрованный текст</h2>
+				<input 
+					type="text" 
+					value={ decrypted } 
+					onChange={e => setDecrypted(e.target.value)} 
+					className="prewin-input" 
+					name="decrypted" 
+				/>
+				<input 
+					type="button" 
+					value="Ввести" 
+					onClick={() => (decrypted.toUpperCase() === fragmentOfText) ? setWinDecrypted(true) : setWinDecrypted(false)} 
+					className="btn" 
+				/>
+			</form>
+			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">Ключ</h2>
+				<input 
+					type="text" 
+					value={ keyVal } 
+					onChange={e => setKeyVal(e.target.value)} 
+					className="prewin-input" 
+					name="key" 
+					disabled={ !winDecrypted } 
+				/>
+				<input 
+					type="button" 
+					value="Ввести" 
+					onClick={() => (keyVal == key) ? setWinKey(true) : setWinKey(false)} 
+					disabled={ !winDecrypted } 
+					className="btn" 
+				/>
+			</form>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle">
 					{ winText }
@@ -356,32 +391,29 @@ function CipherCaesarStrip({ surname, name, patronymic, variant }) {
 								onChange={e => handleChange(e)} 
 								className="word-input" 
 								placeholder="?" 
+								disabled={ !winKey } 
 							/>
 						</div>
 					</>
 				})}
-				<div className="button-container">
+				<div className="exercise-form-button">
 					<input 
 						type="button" 
 						className="btn" 
-						onClick={onSubmitWin} 
+						onClick={onSubmitWin}
+						disabled={ !winKey } 
 						value="Ввести" 
 					/>
-					<button 
-						type="button" 
-						className="btn" 
-						onClick={() => setModalActive(true)}
-					>Тезаурус</button>
 				</div>
 			</form>
 			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<p className="text">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</p>
+				<h2 className="subtitle">Используя полученный код (шифр), закодируйте с его помошью свою фамилию</h2>
 				<input 
 					type="text" 
 					value={ prewin } 
 					onChange={event => setPrewin(event.target.value)} 
 					className="prewin-input" 
-					name="name" 
+					name="prewin" 
 					disabled={ !win } 
 				/>
 				<input 
