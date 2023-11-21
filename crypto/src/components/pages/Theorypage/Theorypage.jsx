@@ -5,7 +5,7 @@ function Theorypage() {
 		<>
 			<section className="theory">
 				<div className="container">
-					Теория
+					<h1 className="title">Теоритические материалы</h1>
 				</div>
 			</section>
 		</>
