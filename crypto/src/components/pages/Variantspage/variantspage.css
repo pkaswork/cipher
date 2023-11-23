@@ -27,33 +27,6 @@
 	background-position: 80px 50px;
 }
 
-.exercise-flex__elem:nth-child(1) {
-	background-image: url("../../assets/images/task_01.png");
-}
-
-.exercise-flex__elem:nth-child(2) {
-	background-image: url("../../assets/images/task_02.png");
-}
-
-.exercise-flex__elem:nth-child(3) {
-	background-image: url("../../assets/images/task_03.png");
-	background-position: 70px 40px;
-}
-
-.exercise-flex__elem:nth-child(4) {
-	background-image: url("../../assets/images/task_04.png");
-	background-position: 90px 50px;
-}
-
-.exercise-flex__elem:nth-child(5) {
-	background-image: url("../../assets/images/task_05.png");
-	background-position: 95px 65px;
-}
-
-.exercise-flex__elem:nth-child(6) {
-	background-image: url("../../assets/images/task_06.png");
-}
-
 .exercise-flex__elem:hover {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
