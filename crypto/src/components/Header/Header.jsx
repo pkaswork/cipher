@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './header.css';
 import Image from '../../assets/images/logo.svg'
 
 export default function Header({ isLogin, surname, name }) {
-	const [active, setActive] = useState(false)
+	const [active, setActive] = useState(false);
+	const location = useLocation()
 
 	return <>
 		<header className="header">
@@ -17,12 +18,12 @@ export default function Header({ isLogin, surname, name }) {
 						<nav className="header-nav">
 							<ul className="nav-list">
 								<li className="nav-list__item">
-									<Link to="/" className={(location.pathname === '/') ? 'active nav-link' : 'nav-link'}>Главная</Link>
+									<Link to="/" state={location.state} className={(location.pathname === '/') ? 'active nav-link' : 'nav-link'}>Главная</Link>
 								</li>
 								<li className="nav-list__item">
-									<Link to="/theory" className={(location.pathname === '/theory') ? 'active nav-link' : 'nav-link'}>Теория</Link>
+									<Link to="/theory" state={location.state} className={(location.pathname === '/theory') ? 'active nav-link' : 'nav-link'}>Теория</Link>
 								</li>
-								{(isLogin === true) ? <li className="nav-list__item"><Link to="/exercises" className={(location.pathname === '/exercises') ? 'active nav-link' : 'nav-link'}>Задания</Link></li> : null}
+								{(isLogin === true) ? <li className="nav-list__item"><Link to="/exercises" state={location.state} className={(location.pathname === '/exercises') ? 'active nav-link' : 'nav-link'}>Задания</Link></li> : null}
 							</ul>
 						</nav>
 					</div>
@@ -54,7 +55,8 @@ export default function Header({ isLogin, surname, name }) {
 				<ul className="nav-list">
 					<li className="nav-list__item">
 						<Link 
-							to="/" 
+							to="/"
+							state={location.state} 
 							className=
 							{
 								(location.pathname === '/') ? 'active nav-link' 
@@ -66,7 +68,8 @@ export default function Header({ isLogin, surname, name }) {
 					</li>
 					<li className="nav-list__item">
 						<Link 
-							to="/theory" 
+							to="/theory"
+							state={location.state} 
 							className=
 							{
 								(location.pathname === '/theory') ? 'active nav-link' 
@@ -81,7 +84,8 @@ export default function Header({ isLogin, surname, name }) {
 						(isLogin === true) ? 
 						<li className="nav-list__item">
 							<Link 
-								to="/exercises" 
+								to="/exercises"
+								state={location.state} 
 								className=
 								{
 									(location.pathname === '/exercises') ? 'active nav-link' 
