@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Rsa({ variant }) {
+function Rsa({ surname, name, patronymic, variant }) {
 	return (
 	<>
 		RSA
