@@ -39,7 +39,10 @@ function Variantspage({surname, name, patronymic, variant}) {
 						<Link to="/exercise" state={{ from: [surname, name, patronymic, variant, 'trisemiusCipher']}} className="text exercise-link">Перейти<span></span></Link>
 					</Link>
 					<Link to="/exercise" state={{ from: [surname, name, patronymic, variant, 'rsa']}} className="exercise-flex__elem">
-						<h2 className="title">Шифр RSA</h2>
+						<h2 className="title">
+							Алгоритм RSA
+							<span className="title-span">цифровая подпись</span>
+						</h2>
 						<Link to="/exercise" state={{ from: [surname, name, patronymic, variant, 'rsa']}} className="text exercise-link">Перейти<span></span></Link>
 					</Link>
 				</div>
