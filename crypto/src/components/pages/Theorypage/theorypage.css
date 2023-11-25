@@ -45,8 +45,12 @@
 	color: var(--dark-gray); 
 }
 
+.cipher-name {
+	color: var(--contrast-color);
+}
+
 .readmore:hover {
-	color: var(--contrast-color)
+	color: var(--contrast-color);
 }
 
 @media (max-width: 750px) {
