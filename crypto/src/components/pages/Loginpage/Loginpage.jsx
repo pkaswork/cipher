@@ -74,7 +74,7 @@ function Loginpage() {
 							to="/" 
 							state={{ from: [surname, name, patronymic, variant]}} 
 						>
-							<button type="button" className="btn" disabled={!surname || !name || !patronymic || !variant}>
+							<button type="button" className="btn" disabled={!surname || !name || !patronymic || !variant || variant < 1 || variant > 80 }>
 								Войти
 							</button>
 						</Link>
