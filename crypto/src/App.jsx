@@ -24,14 +24,12 @@ function App() {
 		variant = location.state.from[3];
 	}
 
-	console.log(location.state)
-
   return (
     <>
       <Header isLogin={isLogin} surname={surname} name={name}/>
       <main className="main">
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/*" element={<Homepage />} />
           <Route path="/auth" element={<Loginpage />} />
           <Route path="/theory" element={<Theorypage />} />
           <Route path="/exercises" element={<Variantspage surname={surname} name={name} patronymic={patronimic} variant={variant}/>} />
