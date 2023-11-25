@@ -5,7 +5,6 @@ let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУ
 let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ';
 
 function CipherCaesar({ surname, name, patronymic, variant }) {
-	const [winText, setWinText] = useState('Запишите код шифрованного текста');
 	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
@@ -300,10 +299,8 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 
 		if (userAnswer === rightAnswer) {
 			setWin(true);
-			setWinText('Вы правильно ввели код');
 		} else {
 			setWin(false);
-			setWinText('Вы неправильно ввели код');
 		}
 	}
 
@@ -331,7 +328,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
-				<p className="text">Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина "Сказка о Золотом Петушке".</p>
+				<p className="text">Прочитайте нижеприведенный текст, а затем найдите код его алфавита. В качестве тезауруса используйте то обстоятельство, что текст составлен из двадцати первых строк произведения А. С. Пушкина «Сказка о Золотом Петушке».</p>
 			</div>
 			<div className="exercise-box__body-text">
 				<h2 className="subtitle">
@@ -343,7 +340,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 			</div>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle">
-					{ winText }
+					Запишите код шифрованного текста
 				</h2>
 				{values.map(item => {
 					return <>

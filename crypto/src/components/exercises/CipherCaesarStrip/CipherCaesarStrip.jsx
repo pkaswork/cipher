@@ -4,7 +4,6 @@ import Modal from '../../Modal/Modal';
 let fragmentOfText = 'ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
 
 function CipherCaesarStrip({ surname, name, variant }) {
-	const [winText, setWinText] = useState('Запишите код шифрованного текста');
 	const [values, setValues] = useState([
 		{
 			id: 0,
@@ -304,10 +303,8 @@ function CipherCaesarStrip({ surname, name, variant }) {
 
 		if (userAnswer === rightAnswer) {
 			setWin(true);
-			setWinText('Вы правильно ввели код');
 		} else {
 			setWin(false);
-			setWinText('Вы неправильно ввели код');
 		}
 	}
 
@@ -375,7 +372,7 @@ function CipherCaesarStrip({ surname, name, variant }) {
 			</form>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle">
-					{ winText }
+					Запишите код шифрованного текста
 				</h2>
 				{values.map(item => {
 					return <>
