@@ -229,6 +229,12 @@ body {
 	background-image: url("../public/assets/images/task_06.png");
 }
 
+@media (max-width: 765px) {
+	.binary-animation {
+		display: none;
+	}
+}
+
 @media (max-width: 594px) {
 	.button-container {
 		justify-content: center;
