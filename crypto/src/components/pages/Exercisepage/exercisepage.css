@@ -57,6 +57,11 @@
 	background: var(--contrast-color);
 }
 
+.exercise-form-img {
+	max-width: 200px;
+	max-height: 46px;
+}
+
 .exercise-page .binary-animation:nth-child(1) {
 	top: 7%;
 	right: 20%;
