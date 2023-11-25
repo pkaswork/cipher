@@ -29,7 +29,7 @@ function Exercisepage() {
 		} else if (mode === 'trisemiusCipher') {
 			return 'Шифр Тритемиуса';
 		} else if (mode === 'rsa') {
-			return 'Шифр RSA';
+			return 'Цифровая подпись по алгоритму RSA';
 		}
 	}
 
