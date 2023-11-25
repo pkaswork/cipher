@@ -15,29 +15,49 @@ function Theorypage() {
 		<>
 			<section className="theory">
 				<div className="container">
-					<h1 className="title">Теоритические материалы</h1>
+					<h1 className="title">Теоретические материалы</h1>
 					<article className={caesarShow ? "theory-article active" : "theory-article"}>
 						<img src={TheoryOne} alt="Шифр Цезаря" />
 						<div className="theory-article__body-text">
-							<p className="text"><b>Шифр Цезаря</b> — это простой метод шифрования, при<br />котором каждая буква в открытом тексте заменяется<br />другой буквой,находящейся на постоянном позиций в алфавите.</p>
+							<p className="text"><b className="cipher-name">Шифр Цезаря</b> — это простой метод шифрования, при<br />котором каждая буква в открытом тексте заменяется<br />другой буквой,находящейся на постоянном позиций в алфавите.</p>
 							<br />
 							<p className="text"><b>Принцип работы шифра Цезаря</b>: каждая буква алфавита<br />заменяется другой буквой на фиксированное количество<br />позиций в алфавите. Это число позиций называется ключом<br />шифра. Например, если ключ шифра равен 3, каждая буква<br />будет заменена буквой, следующей через две позиции в алфавите.<br />Таким образом, буква «А» станет «Г», «Б» станет «Д», «В»<br />станет «Е» и так далее.</p>
 						</div>
-						<btn className="readmore" onClick={() => setCaesarShow(!caesarShow)}>{caesarShow ? "▲ Свернуть" : "▼ Развернуть"}</btn>
+						<btn 
+							className="readmore" 
+							id="cipher-caesar-read" 
+							onClick={() => {
+									document.getElementById('cipher-caesar-read').scrollIntoView({ behavior: 'smooth', block: 'end'});
+									setCaesarShow(!caesarShow);
+								}
+							}
+						>
+							{caesarShow ? "▲ Свернуть" : "▼ Развернуть"}
+						</btn>
 					</article>
 					<article className={tritemiusShow ? "theory-article active" : "theory-article"}>
 						<img src={TheoryTwo} alt="Шифр Тритемиуса" />
 						<div className="theory-article__body-text">
-							<p className="text"><b>Шифр Тритемиуса</b> — относится к различным методам шифрования,<br />предложенным Иоганном Тритемием (Johann Trithemius), немецким<br />монахом, ученым и криптографом,жившим в XV-XVI веках.</p>
+							<p className="text"><b className="cipher-name">Шифр Тритемиуса</b> — относится к различным методам шифрования,<br />предложенным Иоганном Тритемием (Johann Trithemius), немецким<br />монахом, ученым и криптографом,жившим в XV-XVI веках.</p>
 							<br />
 							<p className="text"><b>Принцип работы</b>: пронумеровать буквы алфавита по порядку.<br />Выбрать слово-ключ.Написать кодируемое слово, под ним<br />слово-ключ, и сложить цифры,соответствующие буквам в словах.<br />Последовательность цифр и будет зашифрованным сообщением.</p>
 						</div>
-						<btn className="readmore" onClick={() => setTritemiusShow(!tritemiusShow)}>{tritemiusShow ? "▲ Свернуть" : "▼ Развернуть"}</btn>
+						<btn 
+							className="readmore" 
+							id="cipher-tritemius-read" 
+							onClick={() => {
+									document.getElementById('cipher-tritemius-read').scrollIntoView({ behavior: 'smooth', block: 'start'});
+									setTritemiusShow(!tritemiusShow);
+								}
+							}
+						>
+							{tritemiusShow ? "▲ Свернуть" : "▼ Развернуть"}
+						</btn>
 					</article>
 					<article className={replacementShow ? "theory-article active" : "theory-article"}>
-						<img src={TheoryThree} alt="" />
+						<img src={TheoryThree} alt="Шифр Замены" />
 						<div className="theory-article__body-text">
-							<p className="text"><b>Шифр Замены</b> — это один из самых простых и наиболее<br />распространенных методов шифрования, который использует<br />замену символов или букв в сообщении с помощью других<br />символов или букв.</p>
+							<p className="text"><b className="cipher-name">Шифр Замены</b> — это один из самых простых и наиболее<br />распространенных методов шифрования, который использует<br />замену символов или букв в сообщении с помощью других<br />символов или букв.</p>
 							<br />
 							<p className="text"><b>Принцип работы</b>:
 							<br /> 
@@ -49,14 +69,24 @@ function Theorypage() {
 							<br />
 							Для дешифрования зашифрованного текста необходимо<br />выполнить обратную операцию – заменить каждую букву<br />алфавита шифра на соответствующую ей букву из<br />исходного алфавита. Таким образом, зашифрованный<br />текст преобразуется обратно в исходный текст.<br />Принцип работы шифра простой замены достаточно<br />прост и понятен. Однако, такой шифр не обладает<br />высокой степенью безопасности, так как его<br />легко взломать с помощью методов частотного<br /> анализа и других криптоаналитических методов.</p>
 						</div>
-						<btn className="readmore" onClick={() => setReplacementShow(!replacementShow)}>{replacementShow ? "▲ Свернуть" : "▼ Развернуть"}</btn>
+						<btn 
+							className="readmore" 
+							id="cipher-replacement-read" 
+							onClick={() => {
+									document.getElementById('cipher-replacement-read').scrollIntoView({ behavior: 'smooth', block: 'start'});
+									setReplacementShow(!replacementShow);
+								}
+							}
+						>
+							{replacementShow ? "▲ Свернуть" : "▼ Развернуть"}
+						</btn>
 					</article>
 					<article className={rsaShow ? "theory-article active" : "theory-article"}>
-						<img src={TheoryFour} alt="Шифр Тритемиуса" />
+						<img src={TheoryFour} alt="RSA" />
 						<div className="theory-article__body-text">
-							<p className="text"><b>Алгоритм RSA</b> (Rivest-Shamir-Adleman) является одним из<br />самых популярных асимметричных алгоритмов шифрования.<br />Он основан на математической задаче факторизации больших<br />чисел и использует два ключа: публичный и приватный.</p>
+							<p className="text"><b className="cipher-name">Алгоритм RSA</b> (Rivest-Shamir-Adleman) является одним из<br />самых популярных асимметричных алгоритмов шифрования.<br />Он основан на математической задаче факторизации больших<br />чисел и использует два ключа: публичный и приватный.</p>
 							<br />
-							<p className="text"><b>Принцип работы</b>: Для генерации ключей в алгоритме<br />RSA необходимо выполнить следующие шаги:
+							<div className="text"><b>Принцип работы</b>: Для генерации ключей в алгоритме<br />RSA необходимо выполнить следующие шаги:
 							<ol>
 								<li>Выбрать два простых числа p и q.</li>
 								<li>Вычислить их произведение n = p * q, которое<br />будет использоваться в качестве модуля<br />для шифрования и дешифрования.</li>
@@ -68,9 +98,19 @@ function Theorypage() {
 							Для шифрования<br />сообщения m с помощью публичного ключа<br />(e, n) используется формула<br />c = m^e mod n<br /> где c – зашифрованное сообщение.
 							Для<br />дешифрования зашифрованного сообщения<br />c с помощью приватного ключа (d, n)<br />используется формула<br />m = c^d mod n<br />где m – исходное сообщение.
 							Алгоритм RSA<br />обладает свойством невозможности обратного<br />вычисления приватного ключа по публичному<br />ключу, что обеспечивает безопасность передачи<br />данных. Он также обладает свойством цифровой<br />подписи, позволяющим проверить<br />подлинность отправителя сообщения.
-							</p>
+							</div>
 						</div>
-						<btn className="readmore" onClick={() => setRsaShow(!rsaShow)}>{rsaShow ? "▲ Свернуть" : "▼ Развернуть"}</btn>
+						<btn 
+							className="readmore" 
+							id="rsa-read" 
+							onClick={() => {
+									document.getElementById('rsa-read').scrollIntoView({ behavior: 'smooth', block: 'start'});
+									setRsaShow(!rsaShow)
+								}
+							}
+						>
+							{rsaShow ? "▲ Свернуть" : "▼ Развернуть"}
+						</btn>
 					</article>
 				</div>
 			</section>
