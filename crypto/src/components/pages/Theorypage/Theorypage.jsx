@@ -23,7 +23,7 @@ function Theorypage() {
 							<br />
 							<p className="text"><b>Принцип работы шифра Цезаря</b>: каждая буква алфавита<br />заменяется другой буквой на фиксированное количество<br />позиций в алфавите. Это число позиций называется ключом<br />шифра. Например, если ключ шифра равен 3, каждая буква<br />будет заменена буквой, следующей через две позиции в алфавите.<br />Таким образом, буква «А» станет «Г», «Б» станет «Д», «В»<br />станет «Е» и так далее.</p>
 						</div>
-						<btn 
+						<button
 							className="readmore" 
 							id="cipher-caesar-read" 
 							onClick={() => {
@@ -33,7 +33,7 @@ function Theorypage() {
 							}
 						>
 							{caesarShow ? "▲ Свернуть" : "▼ Развернуть"}
-						</btn>
+						</button>
 					</article>
 					<article className={tritemiusShow ? "theory-article active" : "theory-article"}>
 						<img src={TheoryTwo} alt="Шифр Тритемиуса" />
@@ -42,7 +42,7 @@ function Theorypage() {
 							<br />
 							<p className="text"><b>Принцип работы</b>: пронумеровать буквы алфавита по порядку.<br />Выбрать слово-ключ.Написать кодируемое слово, под ним<br />слово-ключ, и сложить цифры,соответствующие буквам в словах.<br />Последовательность цифр и будет зашифрованным сообщением.</p>
 						</div>
-						<btn 
+						<button 
 							className="readmore" 
 							id="cipher-tritemius-read" 
 							onClick={() => {
@@ -52,7 +52,7 @@ function Theorypage() {
 							}
 						>
 							{tritemiusShow ? "▲ Свернуть" : "▼ Развернуть"}
-						</btn>
+						</button>
 					</article>
 					<article className={replacementShow ? "theory-article active" : "theory-article"}>
 						<img src={TheoryThree} alt="Шифр Замены" />
@@ -69,7 +69,7 @@ function Theorypage() {
 							<br />
 							Для дешифрования зашифрованного текста необходимо<br />выполнить обратную операцию – заменить каждую букву<br />алфавита шифра на соответствующую ей букву из<br />исходного алфавита. Таким образом, зашифрованный<br />текст преобразуется обратно в исходный текст.<br />Принцип работы шифра простой замены достаточно<br />прост и понятен. Однако, такой шифр не обладает<br />высокой степенью безопасности, так как его<br />легко взломать с помощью методов частотного<br /> анализа и других криптоаналитических методов.</p>
 						</div>
-						<btn 
+						<button 
 							className="readmore" 
 							id="cipher-replacement-read" 
 							onClick={() => {
@@ -79,7 +79,7 @@ function Theorypage() {
 							}
 						>
 							{replacementShow ? "▲ Свернуть" : "▼ Развернуть"}
-						</btn>
+						</button>
 					</article>
 					<article className={rsaShow ? "theory-article active" : "theory-article"}>
 						<img src={TheoryFour} alt="RSA" />
@@ -100,7 +100,7 @@ function Theorypage() {
 							Алгоритм RSA<br />обладает свойством невозможности обратного<br />вычисления приватного ключа по публичному<br />ключу, что обеспечивает безопасность передачи<br />данных. Он также обладает свойством цифровой<br />подписи, позволяющим проверить<br />подлинность отправителя сообщения.
 							</div>
 						</div>
-						<btn 
+						<button 
 							className="readmore" 
 							id="rsa-read" 
 							onClick={() => {
@@ -110,7 +110,7 @@ function Theorypage() {
 							}
 						>
 							{rsaShow ? "▲ Свернуть" : "▼ Развернуть"}
-						</btn>
+						</button>
 					</article>
 				</div>
 			</section>
