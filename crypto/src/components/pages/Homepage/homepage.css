@@ -28,6 +28,17 @@
 }
 
 .about-flex__elem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 20px;
+}
+
+.about-flex__elem img {
+	max-width: 150px;
+}
+
+.about-flex__elem {
 	padding: 20px;
 	width: 340px;
 	min-width: 250px;
@@ -143,7 +154,7 @@
 	left: 37%;
 }
 
-@media (max-width: 1070px) {
+@media (max-width: 1100px) {
 	.about-flex {
 		justify-content: center;
 	}

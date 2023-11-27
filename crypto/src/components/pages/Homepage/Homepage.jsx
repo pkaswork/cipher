@@ -4,6 +4,9 @@ import Footer from '../../Footer/Footer';
 import imageOne from '../../../assets/images/about_01.png';
 import imageTwo from '../../../assets/images/about_02.png';
 import imageThree from '../../../assets/images/about_03.png';
+import imageFour from '../../../assets/images/about_04.png';
+import imageFive from '../../../assets/images/about_05.png';
+import imageSix from '../../../assets/images/about_06.png';
 import './homepage.css';
 
 function Homepage() {
@@ -22,13 +25,16 @@ function Homepage() {
 					<p className="caption">&lt;p&gt;Расшифруйте свои возможности&lt;/p&gt;</p>
 					<div className="about-flex">
 						<div className="about-flex__elem">
-							Четыре шифра
+							<img src={imageFour} alt="cipher" />
+							<p className="text">Четыре шифра</p>
 						</div>
 						<div className="about-flex__elem">
-							80 вариантов
+							<img src={imageFive} alt="examples" />
+							<p className="text">80 вариантов</p>
 						</div>
 						<div className="about-flex__elem">
-							Подробная теория
+							<img src={imageSix} alt="theory" />
+							<p className="text">Подробная теория</p>
 						</div>
 					</div>
 					<article className="about-article">
