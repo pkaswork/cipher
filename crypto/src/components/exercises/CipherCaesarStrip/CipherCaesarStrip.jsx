@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
+import Scorm from '../../../scorm';
 
 let fragmentOfText = 'ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
 
@@ -313,6 +314,7 @@ function CipherCaesarStrip({ surname, name, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setModalActive(true);
+			Scorm.calculateScore(50.1);
 		}
 	}
 
@@ -425,5 +427,7 @@ function CipherCaesarStrip({ surname, name, variant }) {
 	</>
 	);
 }
+
+
 
 export default CipherCaesarStrip;

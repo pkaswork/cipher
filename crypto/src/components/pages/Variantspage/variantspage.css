@@ -1,4 +1,3 @@
-
 .exercise-flex {
 	margin-top: 40px;
 	display: flex;
@@ -92,4 +91,10 @@
 .exercise-link span::after {
 	top: 3px;
 	transform: rotate(-45deg);
+}
+
+@media (max-width: 1400px) {
+	.exercise-flex {
+		justify-content: center;
+	}
 }

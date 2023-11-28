@@ -6,7 +6,7 @@ import Homepage from './components/pages/Homepage/Homepage';
 import Theorypage from './components/pages/Theorypage/Theorypage';
 import Exercisepage from './components/pages/Exercisepage/Exercisepage';
 import Loginpage from './components/pages/Loginpage/Loginpage';
-
+import Scorm from './scorm';
 
 function App() {
   const location = useLocation();
@@ -23,6 +23,8 @@ function App() {
 		patronimic = location.state.from[2];
 		variant = location.state.from[3];
 	}
+
+  Scorm.init();
 
   return (
     <>
