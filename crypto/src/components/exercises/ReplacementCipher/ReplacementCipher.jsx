@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
+import Scorm from '../../../scorm';
 
 const messages = [
 	'СООБЩИТЕ_ВАШИ_РЕКВИЗИТЫ_ТЧК',
@@ -328,6 +329,7 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setModalActive(true);
+			Scorm.calculateScore(66.8);
 		}
 	}
 

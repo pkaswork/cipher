@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
+import Scorm from '../../../scorm';
 
 let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
 let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД ЕМУ_ТВОРЯ';
@@ -309,6 +310,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setTried(true);
+			Scorm.calculateScore(16.7);
 		}
 	}
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
 import eulerImage from '../../../assets/images/euler.jpg';
 import findDImage from '../../../assets/images/findd.jpg';
+import Scorm from '../../../scorm';
 
 const variants = [
 	[5, 7], [5, 11], [5, 13], [5, 17], [5, 19], [37, 11],
@@ -226,7 +227,15 @@ function Rsa({ surname, name, variant }) {
 					<input 
 						type="button" 
 						value="Ввести" 
-						onClick={() => (keyValue == finalAnswer) ? setModalActive(true) : setModalActive(false)} 
+						onClick={
+							() => {
+								if (keyValue == finalAnswer) {
+									setModalActive(true);
+									Scorm.calculateScore(100);
+									Scorm.finish();
+								}
+							}
+						} 
 						className="btn"
 						disabled={ !cryptedWin }  
 					/>
