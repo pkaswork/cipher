@@ -281,7 +281,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 	function getAnswer(shift) {
 		let rightAnswer = '';
 	
-		for (let i = 98; i <= 130; i++) { 
+		for (let i = 99; i <= 131; i++) { 
 			rightAnswer = rightAnswer + cipherData['alph'][i - shift];
 		}
 	
@@ -297,7 +297,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 	function onSubmitWin() {
 		let rightAnswer = getAnswer(cipherData['shift']);
 		let userAnswer = values.map(item => item.value).join('').toUpperCase();
-
+		
 		if (userAnswer === rightAnswer) {
 			setWin(true);
 		} else {
