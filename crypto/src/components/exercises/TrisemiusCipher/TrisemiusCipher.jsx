@@ -29,7 +29,6 @@ const keys = [
 ];
 
 function TrisemiusCipher({ surname, name, patronymic, variant }) {
-	const [winText, setWinText] = useState('Запишите код шифрованного текста');
 	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
@@ -271,10 +270,8 @@ function TrisemiusCipher({ surname, name, patronymic, variant }) {
 
 		if (userAnswer === rightAnswer) {
 			setWin(true);
-			setWinText('Вы правильно ввели код');
 		} else {
 			setWin(false);
-			setWinText('Вы неправильно ввели код');
 		}
 	}
 
@@ -320,7 +317,7 @@ function TrisemiusCipher({ surname, name, patronymic, variant }) {
 			</div>
 			<form action="#" method="POST" className="exercise-form">
 				<h2 className="subtitle">
-					{ winText }
+					Запишите код шифрованного текста
 				</h2>
 				{values.map(item => {
 					return <>
