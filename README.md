@@ -50,6 +50,10 @@
 ../cipher/crypto npm run package-scorm
 ```
 
+Архив SCORM-пакета находится:
+
+`../cipher/crypto/scorm_packages`
+
 # Команда проекта
 
 [Юлия](https://github.com/iamlorddop)
