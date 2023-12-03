@@ -53,6 +53,11 @@ input:disabled {
 	cursor: not-allowed;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+   transition: background-color 0s 600000s, color 0s 600000s;
+}
+
 label {
 	font-family: inherit;
 	font-size: 1em;
@@ -205,20 +210,22 @@ body {
 
 .exercise-flex__elem:nth-child(1) {
 	background-image: url("../public/assets/images/task_01.png");
+	background-position: 90px 56px;
 }
 
 .exercise-flex__elem:nth-child(2) {
 	background-image: url("../public/assets/images/task_02.png");
+	background-position: 90px 62px;
 }
 
 .exercise-flex__elem:nth-child(3) {
 	background-image: url("../public/assets/images/task_03.png");
-	background-position: 70px 40px;
+	background-position: 70px 48px;
 }
 
 .exercise-flex__elem:nth-child(4) {
 	background-image: url("../public/assets/images/task_04.png");
-	background-position: 90px 50px;
+	background-position: 100px 68px;
 }
 
 .exercise-flex__elem:nth-child(5) {
@@ -228,6 +235,7 @@ body {
 
 .exercise-flex__elem:nth-child(6) {
 	background-image: url("../public/assets/images/task_06.png");
+	background-position: 95px 65px;
 }
 
 @media (max-width: 765px) {

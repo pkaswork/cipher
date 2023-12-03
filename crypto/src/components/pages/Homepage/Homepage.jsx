@@ -48,7 +48,7 @@ function Homepage() {
 									&lt;ul&gt;
 										<span className="about-article__elem-span">&lt;li&gt;Шифр Цезаря&lt;/li&gt;</span>
 										<span className="about-article__elem-span">&lt;li&gt;Шифр Тритемиуса&lt;/li&gt;</span>
-										<span className="about-article__elem-span">&lt;li&gt;Шифр Замены&lt;/li&gt;</span>
+										<span className="about-article__elem-span">&lt;li&gt;Шифр одноалфавитной замены&lt;/li&gt;</span>
 										<span className="about-article__elem-span">&lt;li&gt;Алгоритм RSA&lt;/li&gt;</span>
 									&lt;/ul&gt;
 								</p>

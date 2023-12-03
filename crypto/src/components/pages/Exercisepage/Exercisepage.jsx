@@ -19,15 +19,15 @@ function Exercisepage() {
 
 	function getName() {
 		if (mode === 'cipherCaesar') {
-			return 'Шифр Цезаря по открытому тексту';
+			return <>Шифр Цезаря: <br /> криптоанализ по открытому тексту</>;
 		} else if (mode === 'cipherCaesarFrequency') {
-			return 'Шифр Цезаря с использованием свойств языка';
+			return <>Шифр Цезаря: <br /> криптоанализ с использованием<br /> статистических свойств языка</>;
 		} else if (mode === 'cipherCaesarStrip') {
-			return 'Шифр Цезаря «Полный перебор»';
+			return <>Шифр Цезаря: <br /> криптоанализ методом «полного перебора»</>;
 		} else if (mode === 'replacementCipher') {
-			return 'Шифр замены';
+			return <>Шифр одноалфавитной замены: <br /> криптоанализ по фрагменту открытого текста</>;
 		} else if (mode === 'trisemiusCipher') {
-			return 'Шифр Тритемиуса';
+			return 'Шифр многоалфавитной замены';
 		} else if (mode === 'rsa') {
 			return 'Цифровая подпись по алгоритму RSA';
 		}

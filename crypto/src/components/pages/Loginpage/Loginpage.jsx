@@ -8,6 +8,11 @@ function Loginpage() {
 	const [patronymic, setPatronymic] = useState('');
 	const [variant, setVariant] = useState('');
 
+	function isValid() {
+		const regexp = /^[A-Za-z0-9ё%&!',:;=?$\x22]+$/i;
+		return !surname || !name || !patronymic || !variant || variant < 1 || variant > 80 || regexp.test(surname) || regexp.test(name) || regexp.test(patronymic);
+	}
+
 	return (
 	<>
 		<section className="login">
@@ -74,7 +79,7 @@ function Loginpage() {
 							to="/" 
 							state={{ from: [surname, name, patronymic, variant]}} 
 						>
-							<button type="button" className="btn" disabled={!surname || !name || !patronymic || !variant || variant < 1 || variant > 80 }>
+							<button type="button" className="btn" disabled={ isValid() }>
 								Войти
 							</button>
 						</Link>

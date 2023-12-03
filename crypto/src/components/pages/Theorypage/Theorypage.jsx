@@ -55,9 +55,9 @@ function Theorypage() {
 						</button>
 					</article>
 					<article className={replacementShow ? "theory-article active" : "theory-article"}>
-						<img src={TheoryThree} alt="Шифр Замены" />
+						<img src={TheoryThree} alt="Шифр одноалфавитной замены" />
 						<div className="theory-article__body-text">
-							<p className="text"><b className="cipher-name">Шифр Замены</b> — это один из самых простых и наиболее<br />распространенных методов шифрования, который использует<br />замену символов или букв в сообщении с помощью других<br />символов или букв.</p>
+							<p className="text"><b className="cipher-name">Шифр одноалфавитной замены</b> — это один из самых простых<br />и наиболеераспространенных методов шифрования, который<br />используетзамену символов или букв в сообщении с помощью<br />других символов или букв.</p>
 							<br />
 							<p className="text"><b>Принцип работы</b>:
 							<br /> 
