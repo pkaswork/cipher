@@ -12,10 +12,11 @@
 }
 
 .exercise-back {
+	margin-bottom: 20px;
 	display: flex;
 	gap: 10px;
 	align-items: center;
-	font-size: 2.3vh;
+	font-size: 20px;
 	transition: color .15s linear;
 }
 
@@ -126,6 +127,10 @@
    column-gap: 10px;
 }
 
+.exercise-form-frequency {
+	justify-content: space-between;
+}
+
 .exercise-box {
 	margin-top: 40px;
 	display: flex;
@@ -160,11 +165,11 @@
 }
 
 .exercise-input-frequency {
-	width: 100px;
+	width: 158px;
 }
 
 .exercise-input-frequency .word-input {
-	width: 70px;
+	width: 134px;
 }
 
 .word-input {

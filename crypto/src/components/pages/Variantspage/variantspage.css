@@ -32,22 +32,22 @@
 
 .exercise-flex__elem .title {
 	text-align: inherit;
-	font-size: 3vh;
+	font-size: 22px;
 	line-height: 1.3;
 }
 
 .title-span {
 	display: block;
-	font-size: 2.4vh;
+	font-size: 18px;
 	font-weight: 400;
 }
 
 .exercise-link {
 	position: relative;
-	top: -35%;
+	top: -25%;
 	left: 0;
 	color: var(--contrast-color);
-	font-size: 2vh;
+	font-size: 18px;
 	text-shadow: 0.4px 0 0 var(--contrast-color);
 }
 
