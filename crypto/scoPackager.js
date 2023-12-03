@@ -9,7 +9,7 @@ const config = {
 	startingPage: 'index.html',
 	source: './dist',
 	package: {
-		version: '0.4.2.3',
+		version: '0.5.0.1',
 		zip: true,
 		author: 'Cipher',
 		outputFolder: './scorm_packages',
