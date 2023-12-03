@@ -5,6 +5,10 @@ import Scorm from '../../../scorm';
 let fragmentOfText = 'ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
 
 function CipherCaesarStrip({ surname, name, variant }) {
+	const [phraseTitle, setPhraseTitle] = useState('Расшифрованный текст');
+	const [keyTitle, setKeyTitle] = useState('Ключ');
+	const [alphabetTitle, setAlphabetTitle] = useState('Запишите код шифрованного текста');
+	const [snpTitle, setSnpTitle] = useState('Используя полученный код (шифр), закодируйте с его помошью свою фамилию');
 	const [values, setValues] = useState([
 		{
 			id: 0,
@@ -297,14 +301,36 @@ function CipherCaesarStrip({ surname, name, variant }) {
 		setValues(prevState);
 	}
 
+	function onSubmitPhrase() {
+		if (decrypted.toUpperCase() === fragmentOfText) {
+			setWinDecrypted(true);
+			setPhraseTitle('Правильный ответ');
+		} else {
+			setPhraseTitle('Неправильный ответ');
+			setTimeout(() => setPhraseTitle('Запишите дешифрованную фразу'), 1500);
+		}
+	}
+
+	function onSubmitKey() {
+		if (keyVal == key) {
+			setWinKey(true);
+			setKeyTitle('Правильный ответ');
+		} else {
+			setKeyTitle('Неправильный ответ');
+			setTimeout(() => setKeyTitle('Ключ'), 1500);
+		}
+	}
+
 	function onSubmitWin() {
 		let rightAnswer = getAnswer(cipherData['shift']);
 		let userAnswer = values.map(item => item.value).join('').toUpperCase();
 
 		if (userAnswer === rightAnswer) {
 			setWin(true);
+			setAlphabetTitle('Правильный ответ');
 		} else {
-			setWin(false);
+			setAlphabetTitle('Неправильный ответ');
+			setTimeout(() => setAlphabetTitle('Запишите код шифрованного текста'), 1500);
 		}
 	}
 
@@ -313,7 +339,11 @@ function CipherCaesarStrip({ surname, name, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setModalActive(true);
+			setSnpTitle('Правильный ответ');
 			Scorm.calculateScore(50.1);
+		} else {
+			setSnpTitle('Неправильный ответ');
+			setTimeout(() => setSnpTitle('Используя полученный код (шифр), закодируйте с его помошью свою фамилию'), 1500);
 		}
 	}
 
@@ -321,7 +351,8 @@ function CipherCaesarStrip({ surname, name, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}` } 
+			text={ `${surname} ${name}, вы решили практическое задание на шифр Цезаря:
+			криптоанализ методом «полного перебора»` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>
@@ -337,8 +368,10 @@ function CipherCaesarStrip({ surname, name, variant }) {
 				</h2>
 				<p className="text">{ replaceLetters(fragmentOfText) }</p>
 			</div>
-			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<h2 className="subtitle">Расшифрованный текст</h2>
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">
+					{ phraseTitle }
+				</h2>
 				<input 
 					type="text" 
 					value={ decrypted } 
@@ -349,12 +382,14 @@ function CipherCaesarStrip({ surname, name, variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={() => (decrypted.toUpperCase() === fragmentOfText) ? setWinDecrypted(true) : setWinDecrypted(false)} 
+					onClick={ onSubmitPhrase } 
 					className="btn" 
 				/>
 			</form>
-			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<h2 className="subtitle">Ключ</h2>
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">
+					{ keyTitle }
+				</h2>
 				<input 
 					type="text" 
 					value={ keyVal } 
@@ -366,14 +401,14 @@ function CipherCaesarStrip({ surname, name, variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={() => (keyVal == key) ? setWinKey(true) : setWinKey(false)} 
+					onClick={ onSubmitKey } 
 					disabled={ !winDecrypted } 
 					className="btn" 
 				/>
 			</form>
-			<form action="#" method="POST" className="exercise-form">
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form">
 				<h2 className="subtitle">
-					Запишите код шифрованного текста
+					{ alphabetTitle }
 				</h2>
 				{values.map(item => {
 					return <>
@@ -398,14 +433,14 @@ function CipherCaesarStrip({ surname, name, variant }) {
 					<input 
 						type="button" 
 						className="btn" 
-						onClick={onSubmitWin}
+						onClick={ onSubmitWin }
 						disabled={ !winKey } 
 						value="Ввести" 
 					/>
 				</div>
 			</form>
-			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<h2 className="subtitle">Используя полученный код (шифр), закодируйте с его помошью свою фамилию</h2>
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">{ snpTitle }</h2>
 				<input 
 					type="text" 
 					value={ prewin } 
@@ -417,7 +452,7 @@ function CipherCaesarStrip({ surname, name, variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={onSubmitPreWin} 
+					onClick={ onSubmitPreWin } 
 					disabled={ !win } 
 					className="btn" 
 				/>

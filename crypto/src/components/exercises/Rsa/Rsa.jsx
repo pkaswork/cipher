@@ -30,6 +30,14 @@ const openKeys = [
 ];
 
 function Rsa({ surname, name, variant }) {
+	const keyVariant = 82 - +variant;
+	const e = eValues[variant - 1];
+	const [multiplyTitle, setMultiplyTitle] = useState('Введите произведение чисел n');
+	const [fnTitle, setFnTitle] = useState('Введите функцию Эйлера f(n)');
+	const [dTitle, setDTitle] = useState(`Введите вашу догадку для значения d при e = ${e}`);
+	const [signTitle, setSignTitle] = useState(`Подпишите и отправьте абоненту 007 Ваш номер варианта ${keyVariant}`);
+	const [cipherTitle, setCipherTitle] = useState(`Зашифруйте и отправьте абоненту 007 Ваш номер варианта ${keyVariant}`);
+	const [kTitle, setKTitle] = useState('Расшифруйте код k и используйте его для выполнения задания');
 	const [secondActive, setSecondActive] = useState(false);
 	const [thirdActive, setThirdActive] = useState(false);
 	const [nValue, setNValue] = useState('');
@@ -44,16 +52,45 @@ function Rsa({ surname, name, variant }) {
 	const [signWin, setSignWin] = useState(false);
 	const [cryptedWin, setCryptedWin] = useState(false);
 	const [modalActive, setModalActive] = useState(false);
-	const firstPrime = variants[+variant - 1][0];  				// получаем числа из массива variants
-	const secondPrime = variants[+variant - 1][1]; 				// 
-	const multiplyPrime = firstPrime * secondPrime; 			// произведение простых чисел
-	const eulerPhi = (firstPrime - 1) * (secondPrime - 1); 	// значение формулы эйлера
-	const e = eValues[variant - 1];									// значение е для поиска d
-	const selectedVariantSub = variantsSub[+variant - 1];		// получаем числа абонента из массива variantsSyb
-	const subFirstKey = selectedVariantSub[0];					// Открытый ключ
-	const subSecondKey = selectedVariantSub[1];					//	
+	const firstPrime = variants[+variant - 1][0];
+	const secondPrime = variants[+variant - 1][1];
+	const multiplyPrime = firstPrime * secondPrime;
+	const eulerPhi = (firstPrime - 1) * (secondPrime - 1);
+	const selectedVariantSub = variantsSub[+variant - 1];
+	const subFirstKey = selectedVariantSub[0];					
+	const subSecondKey = selectedVariantSub[1];						
 
 	function getFirstStep() {
+		function onSubmitMultiply() {
+			if (nValue == multiplyPrime) {
+				setMultiplyTitle('Правильный ответ');
+				setNWin(true);
+			} else {
+				setMultiplyTitle('Неправильный ответ');
+				setTimeout(() => setMultiplyTitle('Введите произведение чисел n'), 1500);
+			}
+		}
+
+		function onSubmitFn() {
+			if (fnValue == eulerPhi) {
+				setFnTitle('Правильный ответ');
+				setFnWin(true);
+			} else {
+				setFnTitle('Неправильный ответ');
+				setTimeout(() => setFnTitle('Введите функцию Эйлера f(n)'), 1500);
+			}
+		}
+
+		function onSubmitD() {
+			if (+dValue * e % eulerPhi === 1) {
+				setDTitle('Правильный ответ');
+				setDWin(true);
+			} else {
+				setDTitle('Неправильный ответ');
+				setTimeout(() => setDTitle(`Введите вашу догадку для значения d при e = ${e}`), 1500);
+			}
+		}
+		
 		return (
 			<>
 				<div className="exercise-box__body-text">
@@ -65,8 +102,8 @@ function Rsa({ surname, name, variant }) {
 						Второе число <b>q = {secondPrime}</b>
 					</p>
 				</div>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Введите произведение чисел n</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ multiplyTitle }</h2>
 					<input 
 						type="text" 
 						value={ nValue } 
@@ -77,12 +114,12 @@ function Rsa({ surname, name, variant }) {
 					<input 
 						type="button" 
 						value="Ввести" 
-						onClick={() => (nValue == multiplyPrime) ? setNWin(true) : setNWin(false)} 
+						onClick={ onSubmitMultiply } 
 						className="btn" 
 					/>
 				</form>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Введите функцию Эйлера f(n)</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ fnTitle }</h2>
 					<img src={eulerImage} alt="euler" className="exercise-form-img" />
 					<input 
 						type="text" 
@@ -95,13 +132,13 @@ function Rsa({ surname, name, variant }) {
 					<input 
 						type="button" 
 						value="Ввести" 
-						onClick={() => (fnValue == eulerPhi) ? setFnWin(true) : setFnWin(false)} 
+						onClick={ onSubmitFn } 
 						className="btn"
 						disabled={ !nWin } 
 					/>
 				</form>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Введите вашу догадку для значения d при e = {e}</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ dTitle }</h2>
 					<img src={findDImage} alt="findD" className="exercise-form-img" />
 					<input 
 						type="text" 
@@ -115,7 +152,7 @@ function Rsa({ surname, name, variant }) {
 						<input 
 							type="button" 
 							value="Ввести" 
-							onClick={() => (+dValue * e % eulerPhi === 1) ? setDWin(true) : setDWin(false)} 
+							onClick={ onSubmitD } 
 							className="btn"
 							disabled={ !fnWin }  
 						/>
@@ -134,8 +171,28 @@ function Rsa({ surname, name, variant }) {
 	}
 
 	function getSecondStep() {
-		const SignV = (+variant) ** e % multiplyPrime;			// подпись
-		const cipherValue = Number(BigInt(+variant) ** BigInt(subFirstKey) % BigInt(subSecondKey)); // зашифрованное значение
+		const SignV = (keyVariant) ** e % multiplyPrime;
+		const cipherValue = Number(BigInt(keyVariant) ** BigInt(subFirstKey) % BigInt(subSecondKey));
+
+		function onSubmitSignV() {
+			if (signValue == SignV) {
+				setSignWin(true);
+				setSignTitle('Правильный ответ');
+			} else {
+				setSignTitle('Неправильный ответ');
+				setTimeout(() => setSignTitle(`Подпишите и отправьте абоненту 007 Ваш номер варианта ${keyVariant}`), 1500);
+			}
+		}
+
+		function onSubmitCipher() {
+			if (cryptedValue == cipherValue) {
+				setCryptedWin(true);
+				setCipherTitle('Правильный ответ');
+			} else {
+				setCipherTitle('Неправильный ответ');
+				setTimeout(() => setCipherTitle(`Зашифруйте и отправьте абоненту 007 Ваш номер варианта ${keyVariant}`), 1500);
+			}
+		}
 
 		return (
 			<>
@@ -148,8 +205,8 @@ function Rsa({ surname, name, variant }) {
 						В вашем справочнике имеется некоторый абонент 007, имеющий открытый ключ <b>d = {subFirstKey}</b>, <b>n = {subSecondKey}</b>.
 					</p>
 				</div>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Подпишите и отправьте абоненту 007 Ваш номер варианта {variant}</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ signTitle }</h2>
 					<input 
 						type="text" 
 						value={ signValue } 
@@ -161,13 +218,13 @@ function Rsa({ surname, name, variant }) {
 					<input 
 						type="button" 
 						value="Ввести" 
-						onClick={() => (signValue == SignV) ? setSignWin(true) : setSignWin(false)} 
+						onClick={ onSubmitSignV } 
 						className="btn"
 						disabled={ !dWin }  
 					/>
 				</form>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Зашифруйте и отправьте абоненту 007 Ваш номер варианта {variant}</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ cipherTitle }</h2>
 					<input 
 						type="text" 
 						value={ cryptedValue } 
@@ -180,7 +237,7 @@ function Rsa({ surname, name, variant }) {
 						<input 
 							type="button" 
 							value="Ввести" 
-							onClick={() => (cryptedValue == cipherValue) ? setCryptedWin(true) : setCryptedWin(false)} 
+							onClick={ onSubmitCipher } 
 							className="btn"
 							disabled={ !signWin }  
 						/>
@@ -199,10 +256,22 @@ function Rsa({ surname, name, variant }) {
 	}
 
 	function getThirdStep() {
-		const keyOne = openKeys[0]; // первый открытый ключ
-		const keyTwo = openKeys[1]; // второй открытый ключ
-		const finalAnswer = Number(Number(BigInt(keyOne) ** BigInt(subFirstKey) % BigInt(subSecondKey)) + '' + Number(BigInt(keyTwo) ** BigInt(subFirstKey) % BigInt(subSecondKey)));  // результат
+		const keyOne = openKeys[0];
+		const keyTwo = openKeys[1];
+		const finalAnswer = Number(Number(BigInt(keyOne) ** BigInt(subFirstKey) % BigInt(subSecondKey)) + '' + Number(BigInt(keyTwo) ** BigInt(subFirstKey) % BigInt(subSecondKey)));
 		
+		function onSubmitWin() {
+			if (keyValue == finalAnswer) {
+				setModalActive(true);
+				setKTitle('Правильный ответ');
+				Scorm.calculateScore(100);
+				Scorm.finish();
+			} else {
+				setKTitle('Неправильный ответ');
+				setTimeout(() => setKTitle('Расшифруйте код k и используйте его для выполнения задания'));
+			}
+		}
+
 		return (
 			<>
 				<div className="exercise-box__body-text">
@@ -211,11 +280,11 @@ function Rsa({ surname, name, variant }) {
 						<br />
 						Второй открытый ключ 007 <b>n = {subSecondKey}</b>
 						<br />
-						Вы установили защищенный обмен информацией с удаленным абонентом сети 007. Абонент 007 посылает Вам в подписанном виде результирующий код выполненной Лабораторной работы №25: K1 = {keyOne} | K2 = {keyTwo}
+						Вы установили защищенный обмен информацией с удаленным абонентом сети 007. Абонент 007 посылает Вам в подписанном виде результирующий код выполненного задания: K1 = {keyOne} | K2 = {keyTwo}
 					</p>
 				</div>
-				<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-					<h2 className="subtitle">Расшифруйте код k и используйте его для выполнения Лабароторной работы №26</h2>
+				<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+					<h2 className="subtitle">{ kTitle }</h2>
 					<input 
 						type="text" 
 						value={ keyValue } 
@@ -227,15 +296,7 @@ function Rsa({ surname, name, variant }) {
 					<input 
 						type="button" 
 						value="Ввести" 
-						onClick={
-							() => {
-								if (keyValue == finalAnswer) {
-									setModalActive(true);
-									Scorm.calculateScore(100);
-									Scorm.finish();
-								}
-							}
-						} 
+						onClick={ onSubmitWin } 
 						className="btn"
 						disabled={ !cryptedWin }  
 					/>
@@ -248,7 +309,7 @@ function Rsa({ surname, name, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}` } 
+			text={ `${surname} ${name}, вы решили практическое задание на цифровую подпись по алгоритму RSA` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>

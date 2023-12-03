@@ -2,10 +2,35 @@ import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
 import Scorm from '../../../scorm';
 
-let fragmentOfText = 'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ';
-let tezaurus = 'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_И_СОСЕДЯМ_ТО_И_ДЕЛО_НАНОСИЛ_ОБИДЫ_СМЕЛО_НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_ТУТ_СОСЕДИ_БЕСПОКОИТЬ_СТАЛИ_СТАРОГО_ЦАРЯ_СТРАШНЫЙ_ВРЕД_ЕМУ_ТВОРЯ';
+const fragmentOfText = [
+	'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_',
+	'ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_',
+	'И_ПОКОЙ_СЕБЕ_УСТРОИТЬ',
+	'ТУТ_СОСЕДИ_БЕСПОКОИТЬ_',
+	'СТАЛИ_СТАРОГО_ЦАРЯ_',
+];
+const tezaurus = [
+	'НЕГДЕ_В_ТРИДЕВЯТОМ_ЦАРСТВЕ_',
+	'В_ТРИДЕСЯТОМ_ГОСУДАРСТВЕ_',
+	'ЖИЛ_БЫЛ_СЛАВНЫЙ_ЦАРЬ_ДАДОН_',
+	'С_МОЛОДУ_БЫЛ_ГРОЗЕН_ОН_',
+	'И_СОСЕДЯМ_ТО_И_ДЕЛО_',
+	'НАНОСИЛ_ОБИДЫ_СМЕЛО_',
+	'НО_ПОД_СТАРОСТЬ_ЗАХОТЕЛ_',
+	'ОТДОХНУТЬ_ОТ_РАТНЫХ_ДЕЛ_',
+	'И_ПОКОЙ_СЕБЕ_УСТРОИТЬ_',
+	'ТУТ_СОСЕДИ_БЕСПОКОИТЬ_',
+	'СТАЛИ_СТАРОГО_ЦАРЯ_',
+	'СТРАШНЫЙ_ВРЕД_ЕМУ_ТВОРЯ_',
+	'ЧТОБ_КОНЦЫ_СВОИХ_ВЛАДЕНИЙ_',
+	'ОХРАНЯТЬ_ОТ_НАПАДЕНИЙ_',
+	'ДОЛЖЕН_БЫЛ_ОН_СОДЕРЖАТЬ_',
+	'МНОГОЧИСЛЕННУЮ_РАТЬ'
+];
 
 function CipherCaesar({ surname, name, patronymic, variant }) {
+	const [alphabetTitle, setAlphabetTitle] = useState('Запишите код шифрованного текста');
+	const [snpTitle, setSnpTitle] = useState('Используя полученный код (шифр), закодируйте с его помошью своё ФИО');
 	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
@@ -210,7 +235,6 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 	const [prewin, setPrewin] = useState('');
 	const [modalActive, setModalActive] = useState(false);
 	const [tried, setTried] = useState(false);
-	
 	let cipherData = {
 		'shift' : +variant,
 		'code' : {
@@ -300,8 +324,10 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 		
 		if (userAnswer === rightAnswer) {
 			setWin(true);
+			setAlphabetTitle('Правильный ответ');
 		} else {
-			setWin(false);
+			setAlphabetTitle('Неправильный ответ');
+			setTimeout(() => setAlphabetTitle('Запишите код шифрованного текста'), 1500);
 		}
 	}
 
@@ -310,7 +336,11 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setTried(true);
+			setSnpTitle('Правильный ответ');
 			Scorm.calculateScore(16.7);
+		} else {
+			setSnpTitle('Неправильный ответ');
+			setTimeout(() => setSnpTitle('Используя полученный код (шифр), закодируйте с его помошью своё ФИО'), 1500);
 		}
 	}
 
@@ -318,13 +348,21 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 	<>
 		<Modal 
 			title="Тезаурус"
-			text={ tezaurus } 
+			text={ 
+				tezaurus.map(item => {
+					return (
+						<>
+							{item}<br />
+						</>
+					);
+				})
+			} 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}` } 
+			text={ `${surname} ${name}, вы решили практическое задание на шифр Цезаря: криптоанализ по открытому тексту` } 
 			active={ tried } 
 			setActive={ setTried } 
 		/>
@@ -337,12 +375,16 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 					Зашифрованный текст
 				</h2>
 				<p className="text">
-					{ replaceLetters(fragmentOfText) }
+					{ replaceLetters(fragmentOfText[0]) }<br />
+					{ replaceLetters(fragmentOfText[1]) }<br />
+					{ replaceLetters(fragmentOfText[2]) }<br />
+					{ replaceLetters(fragmentOfText[3]) }<br />
+					{ replaceLetters(fragmentOfText[4]) }<br />
 				</p>
 			</div>
-			<form action="#" method="POST" className="exercise-form">
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form">
 				<h2 className="subtitle">
-					Запишите код шифрованного текста
+					{ alphabetTitle }
 				</h2>
 				{values.map(item => {
 					return <>
@@ -376,8 +418,8 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 					>Тезаурус</button>
 				</div>
 			</form>
-			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<h2 className="subtitle">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</h2>
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">{ snpTitle }</h2>
 				<input 
 					type="text" 
 					value={ prewin } 
@@ -389,7 +431,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={onSubmitPreWin} 
+					onClick={ onSubmitPreWin } 
 					disabled={ !win } 
 					className="btn" 
 				/>

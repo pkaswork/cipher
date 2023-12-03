@@ -27,6 +27,8 @@ const messages = [
 const key = 'СУХАРЕВ';
 
 function ReplacementCipher({ surname, name, patronymic, variant }) {
+	const [alphabetTitle, setAlphabetTitle] = useState('Запишите код шифрованного текста');
+	const [snpTitle, setSnpTitle] = useState('Используя полученный код (шифр), закодируйте с его помошью своё ФИО');
 	const [win, setWin] = useState(false);
 	const [values, setValues] = useState([
 		{
@@ -319,8 +321,10 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 		
 		if (userAnswer === rightAnswer) {
 			setWin(true);
+			setAlphabetTitle('Правильный ответ');
 		} else {
-			setWin(false);
+			setAlphabetTitle('Неправильный ответ');
+			setTimeout(() => setAlphabetTitle('Запишите код алфавита текста'), 1500);
 		}
 	}
 
@@ -329,7 +333,11 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 
 		if (rightSNP === prewin.toUpperCase()) {
 			setModalActive(true);
+			setSnpTitle('Правильный ответ');
 			Scorm.calculateScore(66.8);
+		} else {
+			setSnpTitle('Неправильный ответ');
+			setTimeout(() => setSnpTitle('Используя полученный код (шифр), закодируйте с его помошью своё ФИО'), 1500);
 		}
 	}
 
@@ -337,7 +345,8 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}` } 
+			text={ `${surname} ${name}, вы решили практическое задание на шифр одноалфавитной замены:
+			криптоанализ по фрагменту открытого текста` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>
@@ -364,9 +373,9 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 			<div className="exercise-box__body-text">
 				<h2 className="subtitle">Подпись: {replaceLetters(key)}</h2>
 			</div>
-			<form action="#" method="POST" className="exercise-form">
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form">
 				<h2 className="subtitle">
-					Запишите код шифрованного текста
+					{ alphabetTitle }
 				</h2>
 				{values.map(item => {
 					return <>
@@ -395,8 +404,8 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 					/>
 				</div>
 			</form>
-			<form action="#" method="POST" className="exercise-form exercise-form-prewin">
-				<h2 className="subtitle">Используя полученный код (шифр), закодируйте с его помошью своё ФИО:</h2>
+			<form action="#" method="POST" onSubmit={e => e.preventDefault()} className="exercise-form exercise-form-prewin">
+				<h2 className="subtitle">{ snpTitle }</h2>
 				<input 
 					type="text" 
 					value={ prewin } 
@@ -408,7 +417,7 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 				<input 
 					type="button" 
 					value="Ввести" 
-					onClick={onSubmitPreWin} 
+					onClick={ onSubmitPreWin } 
 					disabled={ !win } 
 					className="btn" 
 				/>
