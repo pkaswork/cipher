@@ -351,8 +351,8 @@ function CipherCaesarStrip({ surname, name, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на шифр Цезаря:
-			криптоанализ методом «полного перебора»` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Шифр Цезаря:
+			криптоанализ методом «полного перебора».` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>

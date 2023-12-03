@@ -674,7 +674,7 @@ function СipherCaesarFrequency({ surname, name, patronymic, variant }) {
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на шифр Цезаря: криптоанализ  с использованием статистических свойств языка` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Шифр Цезаря: криптоанализ  с использованием статистических свойств языка».` } 
 			active={ modalWin } 
 			setActive={ setModalWin } 
 		/>

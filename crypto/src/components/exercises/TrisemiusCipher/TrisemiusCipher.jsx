@@ -208,7 +208,7 @@ function TrisemiusCipher({ surname, name, patronymic, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на шифр многоалфавитной замены` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Шифр многоалфавитной замены».` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>

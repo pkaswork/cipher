@@ -345,8 +345,8 @@ function ReplacementCipher({ surname, name, patronymic, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на шифр одноалфавитной замены:
-			криптоанализ по фрагменту открытого текста` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Шифр одноалфавитной замены:
+			криптоанализ по фрагменту открытого текста».` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>

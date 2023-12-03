@@ -309,7 +309,7 @@ function Rsa({ surname, name, variant }) {
 	<>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на цифровую подпись по алгоритму RSA` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Цифровую подпись по алгоритму RSA».` } 
 			active={ modalActive } 
 			setActive={ setModalActive } 
 		/>

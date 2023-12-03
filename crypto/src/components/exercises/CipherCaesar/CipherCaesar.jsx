@@ -362,7 +362,7 @@ function CipherCaesar({ surname, name, patronymic, variant }) {
 		/>
 		<Modal 
 			title="Поздравляем!"
-			text={ `${surname} ${name}, вы решили практическое задание на шифр Цезаря: криптоанализ по открытому тексту` } 
+			text={ `${surname} ${name}, вы решили практическое задание на «Шифр Цезаря: криптоанализ по открытому тексту».` } 
 			active={ tried } 
 			setActive={ setTried } 
 		/>
