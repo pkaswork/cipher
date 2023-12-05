@@ -9,6 +9,7 @@ let Scorm = {
 		SCORM.set("cmi.core.score.raw", `${score}`);
 		SCORM.set("cmi.core.score.max", "100");
 		SCORM.set("cmi.core.score.min", "0");
+		SCORM.save();
 	},
 
 	finish() {
