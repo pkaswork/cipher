@@ -214,7 +214,7 @@ function TrisemiusCipher({ surname, name, patronymic, variant }) {
 		/>
 		<div className="exercise-box">
 			<div className="exercise-box__body-text">
-				<p className="text">Имеется текс, который необходимо закодировать шифром <b>тритемиуса</b>, используя заданное ключевое слово.</p>
+				<p className="text">Имеется текст, который необходимо закодировать шифром <b>тритемиуса</b>, используя заданное ключевое слово.</p>
 				<br />
 				<p className="text"><b>Фраза:</b> { phrases[+variant - 1] }</p>
 				<br />
