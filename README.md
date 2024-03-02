@@ -60,6 +60,10 @@
 
 `../cipher/crypto/scorm_packages`
 
+# Сохранение данных в moodle
+
+[cmi.core.score.max](https://scorm.com/scorm-explained/technical-scorm/run-time/run-time-reference/#section-2)
+
 # Команда проекта
 
 [Юлия](https://github.com/iamlorddop)
